@@ -1,12 +1,11 @@
 <h1>
   <img src="docs/images/bsbench.png" alt="BullshitBench logo" width="64" />
-  BullshitBench
+  BullshitBench v2
 </h1>
 
 BullshitBench measures whether models detect nonsense, call it out clearly, and avoid confidently continuing with invalid assumptions.
 
-- Public viewer (stable): https://petergpt.github.io/bullshit-benchmark/viewer/index.html
-- Public viewer (v2-focused): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
+- Public viewer (latest): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
 - Updated: 2026-03-02
 
 ## Viewer Walkthrough (v2)
@@ -79,15 +78,14 @@ export OPENROUTER_API_KEY=your_key_here
 
 5. Open the viewer:
 
-- Published viewer (stable): https://petergpt.github.io/bullshit-benchmark/viewer/index.html
-- Published viewer (v2-focused): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
+- Published viewer (latest): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
 - Local viewer (optional):
 
 ```bash
 ./scripts/run_end_to_end.sh --with-additional-judges --serve --port 8877
 ```
 
-Then open `http://localhost:8877/viewer/index.html`.
+Then open `http://localhost:8877/viewer/index.v2.html`.
 Use the `Benchmark Version` dropdown in the filters panel to switch between published datasets (for example `v1` and `v2`).
 
 ## v1 to v2

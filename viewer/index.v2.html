@@ -1141,7 +1141,7 @@ const BENCHMARK_CONFIGS = {
     displayLabel: "V1 (Original)",
     heroTitle: "BullshitBench v1",
     heroSubtitle:
-      "Original BullshitBench release using the v1 dataset and question set. Some v2 visuals are reused when the fields exist.",
+      "Original BullshitBench release using the v1 dataset and question set.",
     loadingLabel: "v1",
     titlePrefix: "BullshitBench v1",
     questionsPaths: ["../questions.json"],
@@ -1958,7 +1958,12 @@ function renderModelBars(filtered) {
     const s=summarize(modelRows), sample=modelRows[0]||{};
     return { key:k, label:prettyModel(sample), org:modelOrg(sample), ...s };
   });
-  rows.sort((a,b)=>b.greenRate-a.greenRate||a.label.localeCompare(b.label));
+  rows.sort((a,b)=>
+    (b.greenRate-a.greenRate) ||
+    (b.amberRate-a.amberRate) ||
+    (a.redRate-b.redRate) ||
+    a.label.localeCompare(b.label)
+  );
   const summaryEl = document.getElementById("modelAvgSummary");
   if (summaryEl) {
     const overall = summarize(filtered);
@@ -3035,7 +3040,12 @@ function renderLeaderboard(filtered) {
     return { mk, rank:0, model:prettyModel(sample), org:modelOrg(sample), reasoning:normReasoning(sample.model_reasoning_level), ...s, avgTokens, avgCost };
   });
   // Baseline ranking
-  const baseline=[...rows].sort((a,b)=>b.greenRate-a.greenRate||a.redRate-b.redRate||a.model.localeCompare(b.model));
+  const baseline=[...rows].sort((a,b)=>
+    (b.greenRate-a.greenRate) ||
+    (b.amberRate-a.amberRate) ||
+    (a.redRate-b.redRate) ||
+    a.model.localeCompare(b.model)
+  );
   baseline.forEach((r,i)=>r.rank=i+1);
   // Apply user sort
   const {key,direction}=S.lbSort;
@@ -3045,7 +3055,14 @@ function renderLeaderboard(filtered) {
     let cmp=0;
     if(numKeys.has(key)) cmp=Number(a[key]||0)-Number(b[key]||0);
     else cmp=String(a[key]||"").localeCompare(String(b[key]||""));
-    return cmp!==0?cmp*dir:(b.greenRate-a.greenRate||a.model.localeCompare(b.model));
+    return cmp!==0
+      ? cmp*dir
+      : (
+        (b.greenRate-a.greenRate) ||
+        (b.amberRate-a.amberRate) ||
+        (a.redRate-b.redRate) ||
+        a.model.localeCompare(b.model)
+      );
   });
 
   document.getElementById("lbBody").innerHTML=baseline.map(r=>{
