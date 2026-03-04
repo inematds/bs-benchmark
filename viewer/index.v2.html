@@ -890,6 +890,26 @@
       .domain-bar { border-radius: 0; padding: 10px 12px; top: 0; }
       .panel { border-radius: 12px; padding: 12px; }
     }
+    .explainer-box {
+      background: linear-gradient(135deg, #f0f7f4 0%, #faf8f2 100%);
+      border: 1px solid #d0ddd7;
+      border-left: 4px solid var(--teal);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #2a3d36;
+    }
+    .explainer-box strong { color: var(--teal); }
+    .explainer-box .explainer-title {
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
     @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
@@ -987,6 +1007,14 @@
       <div id="modelAvgSummary" class="model-avg-summary"></div>
       <div id="orgGuide" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;"></div>
       <div id="modelBars" style="display:grid;gap:6px;"></div>
+      <div class="explainer-box">
+        <div class="explainer-title">O que este gráfico mostra?</div>
+        Imagine que você faz 100 perguntas absurdas para cada inteligência artificial — perguntas que parecem sérias mas na verdade não fazem sentido nenhum. Este gráfico mostra como cada IA reagiu:
+        <strong>Verde</strong> = a IA percebeu que era besteira e avisou claramente.
+        <strong>Âmbar</strong> = a IA desconfiou, mas mesmo assim tentou responder.
+        <strong>Vermelho</strong> = a IA acreditou no absurdo e respondeu como se fosse verdade.
+        Quanto mais verde, melhor — significa que a IA é mais difícil de enganar.
+      </div>
     </section>
 
     <!-- Drilldown (hidden by default) -->
@@ -1009,6 +1037,10 @@
         <table class="heatmap" id="domainHeatmap"></table>
       </div>
       <div id="domainDrilldown"></div>
+      <div class="explainer-box">
+        <div class="explainer-title">O que este gráfico mostra?</div>
+        As perguntas absurdas foram divididas em 5 áreas de conhecimento: software, medicina, direito, finanças e física. Esta tabela mostra o desempenho de cada IA em cada área. Cores mais escuras significam que a IA se saiu melhor naquela área. Isso ajuda a entender se uma IA é boa em detectar besteiras em geral ou apenas em áreas específicas.
+      </div>
     </section>
 
     <section class="panel" id="domainInsightsSection">
@@ -1021,6 +1053,10 @@
           </div>
           <div id="domainAvgBars" class="domain-avg-bars"></div>
         </div>
+      </div>
+      <div class="explainer-box">
+        <div class="explainer-title">O que este gráfico mostra?</div>
+        Aqui você vê a média de acerto de todas as IAs em cada área de conhecimento. Isso revela quais áreas são mais fáceis ou mais difíceis de enganar as IAs. Por exemplo, se a barra de "física" é mais baixa, significa que as IAs têm mais dificuldade em perceber absurdos nessa área.
       </div>
     </section>
 
@@ -1036,6 +1072,10 @@
       </div>
       <svg id="launchAllOrgs" class="scatter-svg" viewBox="0 0 1200 480" role="img"></svg>
       <p id="launchAllMeta" class="small-note"></p>
+      <div class="explainer-box">
+        <div class="explainer-title">O que este gráfico mostra?</div>
+        Este gráfico mostra a evolução ao longo do tempo. Cada ponto representa uma IA, posicionada pela data em que foi lançada (eixo horizontal) e pela sua taxa de acerto (eixo vertical). As linhas conectam os modelos de cada empresa (Anthropic, OpenAI, Google, etc.). Se a linha sobe, significa que os modelos mais novos daquela empresa estão ficando melhores em detectar absurdos.
+      </div>
     </section>
 
     <!-- 2x2 Chart Grid -->
@@ -1045,6 +1085,10 @@
         <p class="subtle">Todos os modelos testados plotados por data de lançamento vs. taxa verde.</p>
         <div class="chart-legend" id="allModelsLegend"></div>
         <svg id="allModelsScatter" class="scatter-svg" viewBox="0 0 600 420"></svg>
+        <div class="explainer-box">
+          <div class="explainer-title">O que este gráfico mostra?</div>
+          Será que IAs mais novas são realmente mais inteligentes? Este gráfico coloca todas as IAs testadas num plano: quanto mais à direita, mais recente é a IA; quanto mais acima, melhor ela detecta besteiras. Se os pontos sobem conforme vão para a direita, sim — as IAs mais novas estão melhorando.
+        </div>
       </section>
       <section class="panel">
         <div class="reasoning-panel-head">
@@ -1057,6 +1101,10 @@
         <p class="subtle" id="reasoningScatterSubtitle">Média de tokens de raciocínio usados vs. taxa verde. Mais tokens de raciocínio = modelo "pensando mais".</p>
         <div class="chart-legend" id="reasoningScatterLegend"></div>
         <svg id="reasoningScatter" class="scatter-svg" viewBox="0 0 600 420"></svg>
+        <div class="explainer-box">
+          <div class="explainer-title">O que este gráfico mostra?</div>
+          Algumas IAs podem "pensar mais" antes de responder, usando mais processamento (tokens de raciocínio) ou mais dinheiro (custo). Este gráfico mostra se gastar mais com "pensamento" realmente ajuda a detectar absurdos. Se os pontos mais à direita (que pensam mais) também estão mais acima (acertam mais), então sim — pensar mais ajuda.
+        </div>
       </section>
     </div>
 
@@ -1064,6 +1112,10 @@
     <section class="panel">
       <h2 data-bench-heading="Leaderboard">BullshitBench v2: Ranking</h2>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="orgColorKey"></div>
+      <div class="explainer-box">
+        <div class="explainer-title">O que é este ranking?</div>
+        Esta tabela classifica todas as IAs testadas da melhor para a pior. A coluna <strong>Verde %</strong> é a mais importante: mostra a porcentagem de vezes que a IA percebeu o absurdo. Você também pode ver o custo médio por resposta e quantos tokens de raciocínio cada IA usou. Clique nos cabeçalhos das colunas para reordenar.
+      </div>
       <div class="table-wrap" style="max-height:600px;">
         <table>
           <thead id="lbHead">
@@ -1091,6 +1143,10 @@
       <h2 data-bench-heading="Detection Rate by Technique">BullshitBench v2: Taxa de Detecção por Técnica</h2>
       <p class="subtle">Taxa média de detecção em todos os modelos para cada técnica BS. Menor = mais difícil para os modelos detectarem.</p>
       <div id="techniqueChart" style="display:grid;gap:6px;"></div>
+      <div class="explainer-box">
+        <div class="explainer-title">O que este gráfico mostra?</div>
+        Existem diferentes formas de criar uma pergunta absurda — por exemplo, inventar um framework que não existe, aplicar conceitos de uma área em outra, ou usar jargão sem sentido. Este gráfico mostra quais técnicas de engano são mais eficazes contra as IAs. Barras menores significam que aquela técnica engana mais as IAs.
+      </div>
     </section>
 
     <!-- Response Viewer -->

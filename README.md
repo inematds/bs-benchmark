@@ -3,10 +3,24 @@
   BullshitBench v2
 </h1>
 
-O BullshitBench mede se os modelos detectam absurdos, os apontam claramente e evitam continuar com confiança em premissas inválidas.
+O BullshitBench mede se os modelos de inteligência artificial detectam absurdos, os apontam claramente e evitam continuar com confiança em premissas inválidas.
 
 - Visualizador público (mais recente): https://inematds.github.io/bs-benchmark/viewer/index.v2.html
 - Atualizado em: 2026-03-04
+
+## O Que é "Absurdo" Neste Contexto?
+
+Quando falamos de "absurdo" (ou "bullshit") neste benchmark, estamos nos referindo a **perguntas que parecem inteligentes e técnicas, mas que na verdade não fazem sentido algum**. São frases construídas com jargão real de áreas como medicina, direito, finanças, física e software, mas que combinam esses termos de forma que não têm significado real.
+
+**Exemplos do que consideramos "absurdo":**
+
+- Perguntar sobre a "impedância em ohms entre obrigações regulatórias da SEC e frameworks de ESG" — impedância é um conceito de engenharia elétrica, não tem nada a ver com regulamentação financeira.
+- Perguntar qual é a "vida útil em graus-dia de uma cláusula de força maior" — cláusulas contratuais não são materiais perecíveis que estragam com o tempo.
+- Perguntar sobre um "framework de decomposição diferencial de indenização" — isso não existe, mas soa como algo que poderia existir para quem não é especialista.
+
+**Por que isso importa?** Se você pede ajuda a uma IA e ela aceita premissas absurdas sem questionar, ela pode te dar respostas completamente erradas com total confiança. Uma IA confiável deveria dizer: *"Espera, isso não faz sentido"* — em vez de elaborar uma resposta detalhada sobre algo que não existe.
+
+**Como funciona o teste:** Fazemos 100 perguntas absurdas para cada IA e avaliamos se ela (1) rejeitou claramente o absurdo, (2) desconfiou mas tentou responder mesmo assim, ou (3) aceitou tudo como verdade e respondeu normalmente.
 
 ## Última Entrada do Changelog (2026-03-04)
 
