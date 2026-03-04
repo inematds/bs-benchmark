@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BullshitBench Explorer</title>
+  <title>BullshitBench Explorador</title>
   <link rel="icon" href="../docs/images/bsbench.png">
   <style>
     :root {
@@ -1443,73 +1443,72 @@
     <header class="hero">
       <div class="hero-title">
         <img class="hero-logo" src="../docs/images/bsbench.png" alt="BullshitBench logo">
-        <h1>BullshitBench: Models Answering Nonsense Questions</h1>
+        <h1>BullshitBench: Modelos Respondendo Perguntas Absurdas</h1>
       </div>
       <p class="hero-subtitle">
-        This benchmark measures whether models detect broken premises, call out the nonsense directly, and avoid confidently
-        continuing with invalid assumptions.
+        Este benchmark mede se os modelos detectam premissas inválidas, apontam o absurdo diretamente e evitam continuar com confiança em suposições inválidas.
       </p>
     </header>
 
     <section class="panel filters-panel">
-      <h2>BullshitBench: Filters</h2>
+      <h2>BullshitBench: Filtros</h2>
       <div class="grid-3 filters-grid">
         <label>
-          <span>Benchmark Version</span>
+          <span>Versão do Benchmark</span>
           <select id="datasetVersion"></select>
         </label>
         <label>
-          <span>Search</span>
-          <input id="filterQuery" type="text" placeholder="Model, question id, prompt text...">
+          <span>Buscar</span>
+          <input id="filterQuery" type="text" placeholder="Modelo, id da pergunta, texto do prompt...">
         </label>
         <label>
           <span>Org</span>
           <select id="filterOrg"></select>
         </label>
         <label>
-          <span>Reasoning</span>
+          <span>Raciocínio</span>
           <select id="filterReasoning"></select>
         </label>
         <label>
-          <span>Technique</span>
+          <span>Técnica</span>
           <select id="filterTechnique"></select>
         </label>
         <label>
-          <span>Domain</span>
+          <span>Domínio</span>
           <select id="filterDomain"></select>
         </label>
       </div>
       <div class="judge-filter-row">
-        <span class="small-note">Judges (tick to include):</span>
+        <span class="small-note">Juízes (marque para incluir):</span>
         <label class="judge-chip">
           <input type="checkbox" id="judge1Toggle" checked>
-          <span id="judge1Label">Loading...</span>
+          <span id="judge1Label">Carregando...</span>
         </label>
         <label class="judge-chip">
           <input type="checkbox" id="judge2Toggle" checked>
-          <span id="judge2Label">Loading...</span>
+          <span id="judge2Label">Carregando...</span>
         </label>
         <label class="judge-chip">
           <input type="checkbox" id="judge3Toggle" checked>
-          <span id="judge3Label">Loading...</span>
+          <span id="judge3Label">Carregando...</span>
         </label>
       </div>
       <div class="filter-meta-row">
-        <span class="small-note">Outcome filter:</span>
+        <span class="small-note">Filtro de resultado:</span>
         <div class="score-filter" id="scoreFilter"></div>
       </div>
       <details class="model-visibility-block">
-        <summary>Model visibility and quick actions</summary>
+        <summary>Visibilidade do modelo e ações rápidas</summary>
         <div class="model-visibility-inner">
         <label>
-          <span>Search models</span>
-          <input id="filterModelToggleSearch" type="text" placeholder="Search model names...">
+          <span>Buscar modelos</span>
+          <input id="filterModelToggleSearch" type="text" placeholder="Buscar nomes de modelos...">
         </label>
         <div class="button-row">
-          <button id="primaryModelsBtn" class="alt" type="button">Primary Models: Off</button>
-          <button id="showAllModelsBtn" class="alt" type="button">Show All Models</button>
-          <button id="hideAllModelsBtn" class="alt" type="button">Hide All Models</button>
-          <button id="clearFiltersBtn" class="alt" type="button">Reset All Filters</button>
+          <button id="primaryModelsBtn" class="alt" type="button">Modelos Principais: Desligado</button>
+          <button id="showAllModelsBtn" class="alt" type="button">Mostrar Todos os Modelos</button>
+          <button id="hideAllModelsBtn" class="alt" type="button">Ocultar Todos os Modelos</button>
+          <button id="clearFiltersBtn" class="alt" type="button">Redefinir Todos os Filtros</button>
         </div>
         <div id="modelToggleGrid" class="model-toggle-grid"></div>
         <p id="modelToggleNote" class="small-note"></p>
@@ -1520,11 +1519,11 @@
 
     <section class="panel">
       <div class="chart-head">
-        <h2>BullshitBench: Models Answering Nonsense Questions</h2>
+        <h2>BullshitBench: Modelos Respondendo Perguntas Absurdas</h2>
         <div class="chart-legend" aria-label="Model detection legend">
-          <span class="chart-legend-item"><span class="dot score2"></span>Clear Pushback</span>
-          <span class="chart-legend-item"><span class="dot score1"></span>Partial Challenge</span>
-          <span class="chart-legend-item"><span class="dot score0"></span>Accepted Nonsense</span>
+          <span class="chart-legend-item"><span class="dot score2"></span>Rejeição Clara</span>
+          <span class="chart-legend-item"><span class="dot score1"></span>Desafio Parcial</span>
+          <span class="chart-legend-item"><span class="dot score0"></span>Absurdo Aceito</span>
         </div>
       </div>
       <div class="chart-subguide" id="mainChartOrgGuide"></div>
@@ -1534,49 +1533,49 @@
     <section class="panel hidden-block" id="chartDrilldownPanel">
       <div class="drilldown-head">
         <div>
-          <h2 id="chartDrilldownTitle">BullshitBench: Selected Segment</h2>
+          <h2 id="chartDrilldownTitle">BullshitBench: Segmento Selecionado</h2>
           <p class="small-note" id="chartDrilldownMeta"></p>
         </div>
-        <button type="button" id="clearChartDrilldownBtn" class="alt">Clear Selection</button>
+        <button type="button" id="clearChartDrilldownBtn" class="alt">Limpar Seleção</button>
       </div>
       <div id="chartDrilldownBody" class="drilldown-list"></div>
     </section>
 
     <section class="panel">
-      <h2>BullshitBench: How have models improved?</h2>
-      <p class="small-note">Tracing performance improvements (clear pushback %) with model releases.</p>
+      <h2>BullshitBench: Como os modelos melhoraram?</h2>
+      <p class="small-note">Rastreando melhorias de desempenho (% de rejeição clara) com lançamentos de modelos.</p>
       <div class="launch-controls">
         <label class="launch-toggle">
           <input type="checkbox" id="launchBestOnlyToggle" checked>
-          <span>Best models from the same release</span>
+          <span>Melhores modelos do mesmo lançamento</span>
         </label>
       </div>
-      <svg id="launchScatterSvg" class="launch-plot-svg" viewBox="0 0 1200 420" role="img" aria-label="Green percentage timeline for Anthropic OpenAI and Google models"></svg>
+      <svg id="launchScatterSvg" class="launch-plot-svg" viewBox="0 0 1200 420" role="img" aria-label="Linha do tempo de percentual verde para modelos Anthropic, OpenAI e Google"></svg>
       <p id="launchScatterMeta" class="small-note"></p>
     </section>
 
     <section class="panel">
-      <h2>BullshitBench: Model Leaderboard</h2>
+      <h2>BullshitBench: Ranking de Modelos</h2>
       <div class="org-key-wrap">
-        <span class="small-note">Company colors:</span>
+        <span class="small-note">Cores das empresas:</span>
         <div class="org-key" id="orgColorKey"></div>
       </div>
       <div class="table-wrap">
         <table>
           <thead id="leaderboardHead">
             <tr>
-              <th class="sortable-th" data-sort-key="rank">Rank <span class="sort-ind" data-sort-ind="rank"></span></th>
-              <th class="sortable-th" data-sort-key="model">Model <span class="sort-ind" data-sort-ind="model"></span></th>
+              <th class="sortable-th" data-sort-key="rank">Pos. <span class="sort-ind" data-sort-ind="rank"></span></th>
+              <th class="sortable-th" data-sort-key="model">Modelo <span class="sort-ind" data-sort-ind="model"></span></th>
               <th class="sortable-th" data-sort-key="org">Org <span class="sort-ind" data-sort-ind="org"></span></th>
-              <th class="sortable-th" data-sort-key="reasoning">Reasoning <span class="sort-ind" data-sort-ind="reasoning"></span></th>
-              <th class="sortable-th" data-sort-key="launchDate">Launch Date <span class="sort-ind" data-sort-ind="launchDate"></span></th>
-              <th class="sortable-th" data-sort-key="modelAgeDays">Model Age (days) <span class="sort-ind" data-sort-ind="modelAgeDays"></span></th>
-              <th class="sortable-th" data-sort-key="greenRate">Green % <span class="sort-ind" data-sort-ind="greenRate"></span></th>
-              <th class="sortable-th" data-sort-key="amberRate">Amber % <span class="sort-ind" data-sort-ind="amberRate"></span></th>
-              <th class="sortable-th" data-sort-key="redRate">Red % <span class="sort-ind" data-sort-ind="redRate"></span></th>
-              <th class="sortable-th" data-sort-key="errorRate">Error % <span class="sort-ind" data-sort-ind="errorRate"></span></th>
-              <th>Mix (Green/Amber/Red/Error)</th>
-              <th class="sortable-th" data-sort-key="rows">Rows <span class="sort-ind" data-sort-ind="rows"></span></th>
+              <th class="sortable-th" data-sort-key="reasoning">Raciocínio <span class="sort-ind" data-sort-ind="reasoning"></span></th>
+              <th class="sortable-th" data-sort-key="launchDate">Data de Lançamento <span class="sort-ind" data-sort-ind="launchDate"></span></th>
+              <th class="sortable-th" data-sort-key="modelAgeDays">Idade do Modelo (dias) <span class="sort-ind" data-sort-ind="modelAgeDays"></span></th>
+              <th class="sortable-th" data-sort-key="greenRate">Verde % <span class="sort-ind" data-sort-ind="greenRate"></span></th>
+              <th class="sortable-th" data-sort-key="amberRate">Âmbar % <span class="sort-ind" data-sort-ind="amberRate"></span></th>
+              <th class="sortable-th" data-sort-key="redRate">Vermelho % <span class="sort-ind" data-sort-ind="redRate"></span></th>
+              <th class="sortable-th" data-sort-key="errorRate">Erro % <span class="sort-ind" data-sort-ind="errorRate"></span></th>
+              <th>Mix (Verde/Âmbar/Vermelho/Erro)</th>
+              <th class="sortable-th" data-sort-key="rows">Linhas <span class="sort-ind" data-sort-ind="rows"></span></th>
             </tr>
           </thead>
           <tbody id="leaderboardBody"></tbody>
@@ -1585,31 +1584,31 @@
     </section>
 
     <section class="panel">
-      <h2>BullshitBench: Response Viewer</h2>
+      <h2>BullshitBench: Visualizador de Respostas</h2>
       <div class="compare-controls">
         <label>
-          <span>Question</span>
+          <span>Pergunta</span>
           <select id="compareQuestion"></select>
         </label>
         <label>
-          <span>Model A</span>
+          <span>Modelo A</span>
           <select id="compareModelA"></select>
         </label>
         <label>
-          <span>Model B</span>
+          <span>Modelo B</span>
           <select id="compareModelB"></select>
         </label>
         <label>
-          <span>View</span>
+          <span>Visualizar</span>
           <select id="compareViewMode">
-            <option value="pair">Compare 2</option>
-            <option value="all">Show all</option>
+            <option value="pair">Comparar 2</option>
+            <option value="all">Mostrar tudo</option>
           </select>
         </label>
         <label>
-          <span>Question % Correct</span>
+          <span>% Correto da Pergunta</span>
           <select id="compareQuestionBand">
-            <option value="all">All</option>
+            <option value="all">Todos</option>
             <option value="80_100">80-100%</option>
             <option value="60_80">60-79%</option>
             <option value="40_60">40-59%</option>
@@ -1619,9 +1618,9 @@
         </label>
       </div>
       <div class="button-row compare-actions">
-        <button type="button" id="randomGreenRedBtn" class="btn-green-red-primary">Random</button>
-        <button type="button" id="randomBestQuestionBtn" class="alt btn-best">Random Best Question</button>
-        <button type="button" id="randomWorstQuestionBtn" class="alt btn-worst">Random Worst Question</button>
+        <button type="button" id="randomGreenRedBtn" class="btn-green-red-primary">Aleatório</button>
+        <button type="button" id="randomBestQuestionBtn" class="alt btn-best">Melhor Pergunta Aleatória</button>
+        <button type="button" id="randomWorstQuestionBtn" class="alt btn-worst">Pior Pergunta Aleatória</button>
       </div>
       <div id="questionContext" class="question-context"></div>
       <div id="pairGrid" class="ab-grid">
@@ -1635,7 +1634,7 @@
   <script>
     const DATASET_OPTIONS = {
       v2: {
-        label: "Benchmark v2 (new)",
+        label: "Benchmark v2 (novo)",
         basePath: "data/v2/latest",
       },
       v1: {
@@ -1645,10 +1644,10 @@
     };
 
     const CATEGORY_META = {
-      green: { label: "Green", colorClass: "score2", short: "Green" },
-      amber: { label: "Amber", colorClass: "score1", short: "Amber" },
-      red: { label: "Red", colorClass: "score0", short: "Red" },
-      error: { label: "Error", colorClass: "error", short: "Error" },
+      green: { label: "Verde", colorClass: "score2", short: "Verde" },
+      amber: { label: "Âmbar", colorClass: "score1", short: "Âmbar" },
+      red: { label: "Vermelho", colorClass: "score0", short: "Vermelho" },
+      error: { label: "Erro", colorClass: "error", short: "Erro" },
     };
     const CATEGORY_ORDER = ["green", "amber", "red", "error"];
     const ORG_COLOR_OVERRIDES = {
@@ -1687,19 +1686,19 @@
       "z-ai": "Z.AI",
     };
     const TECHNIQUE_LABELS = {
-      authoritative_framing_of_nothing: "Confident Nonsense Framing",
-      causal_chimera: "Fake Cause-and-Effect Mix",
-      cross_domain_concept_stitching: "Cross-Domain Concept Stitching",
-      false_granularity: "Fake Precision",
-      inverted_nonexistent_dependency: "Invented Dependency Reversal",
-      jargon_soup: "Jargon Soup",
-      misapplied_mechanism: "Misapplied Mechanism",
-      plausible_nonexistent_framework: "Plausible but Fake Framework",
-      reified_metaphor: "Literalized Metaphor",
-      subtle_premise_violation: "Subtle Premise Violation",
-      temporal_category_error: "Time/Category Mix-up",
-      wrong_relationship: "Wrong Relationship",
-      wrong_unit_of_analysis: "Wrong Unit of Analysis",
+      authoritative_framing_of_nothing: "Enquadramento de Absurdo Confiante",
+      causal_chimera: "Mistura Falsa de Causa e Efeito",
+      cross_domain_concept_stitching: "Costura de Conceitos Entre Domínios",
+      false_granularity: "Falsa Precisão",
+      inverted_nonexistent_dependency: "Inversão de Dependência Inventada",
+      jargon_soup: "Sopa de Jargão",
+      misapplied_mechanism: "Mecanismo Mal Aplicado",
+      plausible_nonexistent_framework: "Framework Plausível mas Falso",
+      reified_metaphor: "Metáfora Literalizada",
+      subtle_premise_violation: "Violação Sutil de Premissa",
+      temporal_category_error: "Confusão de Tempo/Categoria",
+      wrong_relationship: "Relação Errada",
+      wrong_unit_of_analysis: "Unidade de Análise Errada",
     };
     const state = {
       responses: [],
@@ -1819,7 +1818,7 @@
     function displayOrg(orgValue) {
       const raw = String(orgValue || "").trim();
       if (!raw) {
-        return "Unknown";
+        return "Desconhecido";
       }
       const normalized = normalizeOrg(raw);
       if (ORG_NAME_OVERRIDES[normalized]) {
@@ -2407,7 +2406,7 @@
           label.textContent = displayModel({ model });
           toggle.disabled = false;
         } else {
-          label.textContent = "Unavailable";
+          label.textContent = "Indisponível";
           toggle.checked = false;
           toggle.disabled = true;
         }
@@ -2589,7 +2588,7 @@
 
     function fillSelect(selectEl, values, keep = "all", labelFormatter = (value) => value) {
       const previous = selectEl.value;
-      const options = [`<option value="all">All</option>`];
+      const options = [`<option value="all">Todos</option>`];
       values.forEach((value) => {
         options.push(
           `<option value="${escapeHtml(value)}">${escapeHtml(labelFormatter(value))}</option>`,
@@ -2724,8 +2723,8 @@
       const active = state.primaryOnly;
       const count = state.primaryModelKeys.size;
       el.primaryModelsBtn.textContent = active
-        ? `Primary Models: On (${count})`
-        : "Primary Models: Off";
+        ? `Modelos Principais: Ligado (${count})`
+        : "Modelos Principais: Desligado";
       el.primaryModelsBtn.classList.toggle("active", active);
     }
 
@@ -2748,7 +2747,7 @@
           const isHidden = state.hiddenModels.has(info.key);
           const checked = isHidden ? "" : " checked";
           return `
-            <label class="model-toggle-item ${isHidden ? "hidden" : ""}" title="${escapeHtml(isHidden ? "Unchecked (hidden)" : "Checked (shown)")}">
+            <label class="model-toggle-item ${isHidden ? "hidden" : ""}" title="${escapeHtml(isHidden ? "Desmarcado (oculto)" : "Marcado (visível)")}">
               <input type="checkbox" data-model-key="${escapeHtml(info.key)}"${checked}>
               <span>${escapeHtml(info.label)}</span>
             </label>
@@ -2903,33 +2902,33 @@
 
       const cards = [
         {
-          label: "Visible Rows",
+          label: "Linhas Visíveis",
           value: total.toLocaleString(),
-          hint: `${scored.toLocaleString()} categorized rows`,
+          hint: `${scored.toLocaleString()} linhas categorizadas`,
           className: "",
         },
         {
-          label: "Green Category",
+          label: "Categoria Verde",
           value: formatPct(greenRate),
-          hint: `${counts.green} rows`,
+          hint: `${counts.green} linhas`,
           className: "green",
         },
         {
-          label: "Amber Category",
+          label: "Categoria Âmbar",
           value: formatPct(amberRate),
-          hint: `${counts.amber} rows`,
+          hint: `${counts.amber} linhas`,
           className: "amber",
         },
         {
-          label: "Red Category",
+          label: "Categoria Vermelha",
           value: formatPct(redRate),
-          hint: `${counts.red} rows`,
+          hint: `${counts.red} linhas`,
           className: "red",
         },
         {
-          label: "Errors",
+          label: "Erros",
           value: counts.error.toLocaleString(),
-          hint: "Rows with no usable verdict",
+          hint: "Linhas sem veredito utilizável",
           className: "error",
         },
       ];
@@ -3193,7 +3192,7 @@
 
       if (!points.length) {
         el.launchScatterSvg.innerHTML = `<text x="50%" y="52%" text-anchor="middle" fill="#5d726b" font-size="16">No rows left after release-window selection.</text>`;
-        el.launchScatterMeta.textContent = "Try disabling the release-window toggle.";
+        el.launchScatterMeta.textContent = "Tente desativar o filtro de janela de lançamento.";
         return;
       }
 
@@ -3857,10 +3856,10 @@
         ${circles}
         ${orgLineLabels}
         <text x="${(margin.left + plotWidth / 2).toFixed(2)}" y="${(height - 14).toFixed(2)}" text-anchor="middle" fill="#425851" font-size="${axisFontSize.toFixed(1)}">Model Launch Date</text>
-        <text x="16" y="${(margin.top + plotHeight / 2).toFixed(2)}" transform="rotate(-90,16,${(margin.top + plotHeight / 2).toFixed(2)})" text-anchor="middle" fill="#425851" font-size="${axisFontSize.toFixed(1)}">% Clear Pushback (Green)</text>
+        <text x="16" y="${(margin.top + plotHeight / 2).toFixed(2)}" transform="rotate(-90,16,${(margin.top + plotHeight / 2).toFixed(2)})" text-anchor="middle" fill="#425851" font-size="${axisFontSize.toFixed(1)}">% Rejeição Clara (Verde)</text>
       `;
 
-      el.launchScatterMeta.textContent = "Note: Percentage of time the model scored 'Green' (pushed back clearly). Best score only if multiple models from the same release were tested (e.g. multiple reasoning levels).";
+      el.launchScatterMeta.textContent = "Nota: Percentual de vezes que o modelo pontuou 'Verde' (rejeitou claramente). Melhor pontuação apenas se múltiplos modelos do mesmo lançamento foram testados (ex.: múltiplos níveis de raciocínio).";
     }
 
     function renderChartDrilldown(filteredRows) {
@@ -4016,11 +4015,11 @@
             row.reasoning && row.reasoning !== "none"
               ? row.reasoning.charAt(0).toUpperCase() + row.reasoning.slice(1)
               : "None";
-          const launchDateText = row.launchDate || "Unknown";
+          const launchDateText = row.launchDate || "Desconhecido";
           const launchDateCell = row.launchEvidenceUrl
             ? `<a href="${escapeHtml(row.launchEvidenceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(launchDateText)}</a>`
             : escapeHtml(launchDateText);
-          const modelAgeText = Number.isFinite(row.modelAgeDays) ? String(row.modelAgeDays) : "Unknown";
+          const modelAgeText = Number.isFinite(row.modelAgeDays) ? String(row.modelAgeDays) : "Desconhecido";
           return `
             <tr>
               <td>${row.rank}</td>

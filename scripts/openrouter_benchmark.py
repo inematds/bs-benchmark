@@ -1859,7 +1859,7 @@ class OpenRouterClient:
         self.timeout_seconds = timeout_seconds
         self.base_url = "https://openrouter.ai/api/v1/chat/completions"
         self.referer = os.getenv("OPENROUTER_REFERER", "")
-        self.app_name = os.getenv("OPENROUTER_APP_NAME", "bullshit-benchmark")
+        self.app_name = os.getenv("OPENROUTER_APP_NAME", "bs-benchmark")
 
     def chat(
         self,

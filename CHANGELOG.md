@@ -1,48 +1,48 @@
-# Changelog
+# Registro de Alterações
 
-All notable benchmark, data, and viewer changes are tracked in this file.
+Todas as mudanças notáveis de benchmark, dados e visualizador são registradas neste arquivo.
 
 ## [2.0.1] - 2026-03-04
 
-### Added
-- Added benchmark runs for `openai/gpt-5.3-chat` and `google/gemini-3.1-flash-lite-preview`.
+### Adicionado
+- Adicionadas execuções de benchmark para `openai/gpt-5.3-chat` e `google/gemini-3.1-flash-lite-preview`.
 
-### Changed
-- Set launch date metadata for both models to `2026-03-04` and synced to:
+### Alterado
+- Definida data de lançamento de metadados para ambos modelos como `2026-03-04` e sincronizada em:
   - `data/model_metadata/model_launch_dates.csv`
   - `data/latest/model_launch_dates.csv`
   - `data/v2/latest/model_launch_dates.csv`
-- Updated `data/latest/leaderboard_with_launch.csv` and `data/v2/latest/leaderboard_with_launch.csv` to show the new launch date and model age (`0`) for both models.
-- Updated [viewer/index.v2.html](viewer/index.v2.html) launch metadata loading to merge embedded rows with CSV rows and fetch metadata with `cache: "no-store"` so new model dates reliably appear in all launch charts.
+- Atualizado `data/latest/leaderboard_with_launch.csv` e `data/v2/latest/leaderboard_with_launch.csv` para mostrar a nova data de lançamento e idade do modelo (`0`) para ambos modelos.
+- Atualizado [viewer/index.v2.html](viewer/index.v2.html) para carregar metadados de lançamento mesclando linhas embutidas com linhas CSV e buscar metadados com `cache: "no-store"` para que as novas datas de modelo apareçam de forma confiável em todos os gráficos de lançamento.
 
 ## [2.0.0] - 2026-03-01
 
-### Highlights
-- Added `100` new v2 nonsense questions.
-- Added domain-specific coverage across `5` domains: `software` (40), `finance` (15), `legal` (15), `medical` (15), `physics` (15).
-- Added new v2 visualizations (model detection mix, domain landscape, over-time trends, release-date scatter, and reasoning tokens/cost scatter).
+### Destaques
+- Adicionadas `100` novas perguntas absurdas v2.
+- Adicionada cobertura por domínio em `5` domínios: `software` (40), `finanças` (15), `jurídico` (15), `medicina` (15), `física` (15).
+- Adicionadas novas visualizações v2 (distribuição de detecção por modelo, panorama por domínio, tendências ao longo do tempo, dispersão por data de lançamento e dispersão de tokens/custo de raciocínio).
 
-### Added
-- New v2 question set in [questions.v2.json](questions.v2.json) with 100 prompts across 5 domain groups and 13 techniques.
-- New v2 config in [config.v2.json](config.v2.json) with high-throughput collection defaults and updated technique set.
-- Dedicated v2 viewer page at [viewer/index.v2.html](viewer/index.v2.html).
-- Dedicated published v2 dataset in `data/v2/latest/*`.
-- Question-builder script [scripts/build_questions_v2_from_draft.py](scripts/build_questions_v2_from_draft.py).
+### Adicionado
+- Novo conjunto de perguntas v2 em [questions.v2.json](questions.v2.json) com 100 prompts em 5 grupos de domínio e 13 técnicas.
+- Nova configuração v2 em [config.v2.json](config.v2.json) com padrões de coleta de alto rendimento e conjunto de técnicas atualizado.
+- Página dedicada do visualizador v2 em [viewer/index.v2.html](viewer/index.v2.html).
+- Dataset v2 publicado dedicado em `data/v2/latest/*`.
+- Script de construção de perguntas [scripts/build_questions_v2_from_draft.py](scripts/build_questions_v2_from_draft.py).
 
-### Changed
-- Viewer and docs now support side-by-side versioning (`v1` and `v2`) without overwriting older data.
-- Pipeline/docs updated for explicit v2 publishing via `--config config.v2.json --viewer-output-dir data/v2/latest`.
-- Publish pipeline now scrubs local machine path fragments from published JSONL artifacts.
-- Canonical panel policy is now fixed to exactly three judges (`panel_mode=full`) with `mean` aggregation in the main pipeline.
-- Viewer categorying now uses published `status` + `consensus_score` as canonical defaults (when all judges are selected), while still allowing subset-judge exploratory views.
-- `viewer/index.v2.html` CSV parsing is now quote-aware for launch metadata and other future CSV extensions.
-- `viewer/index.v2.html` now includes friendly labels for legacy v1 technique keys.
+### Alterado
+- Visualizador e documentação agora suportam versionamento lado a lado (`v1` e `v2`) sem sobrescrever dados antigos.
+- Pipeline/documentação atualizada para publicação explícita v2 via `--config config.v2.json --viewer-output-dir data/v2/latest`.
+- Pipeline de publicação agora limpa fragmentos de caminhos de máquina local de artefatos JSONL publicados.
+- Política canônica do painel agora é fixa em exatamente três juízes (`panel_mode=full`) com agregação `mean` no pipeline principal.
+- Categorização do visualizador agora usa `status` + `consensus_score` publicados como padrões canônicos (quando todos os juízes são selecionados), enquanto ainda permite visualizações exploratórias de subconjunto de juízes.
+- Análise de CSV do `viewer/index.v2.html` agora reconhece aspas para metadados de lançamento e futuras extensões CSV.
+- `viewer/index.v2.html` agora inclui rótulos amigáveis para chaves de técnica legadas v1.
 
-### Removed / Cleaned
-- Removed obsolete `v2_old` drafts and local run-history artifacts.
-- Removed local-only temporary/debug files before publish.
+### Removido / Limpo
+- Removidos rascunhos obsoletos `v2_old` e artefatos de histórico de execução local.
+- Removidos arquivos temporários/de depuração locais antes da publicação.
 
 ## [1.0.0] - 2026-02-25
 
-### Added
-- Initial public benchmark release (v1 dataset + viewer).
+### Adicionado
+- Lançamento público inicial do benchmark (dataset v1 + visualizador).

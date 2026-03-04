@@ -1,168 +1,168 @@
-# BullshitBench Technical Guide
+# Guia Técnico do BullshitBench
 
-This guide is for maintainers and contributors working on benchmark operations and data publishing.
+Este guia é para mantenedores e colaboradores que trabalham em operações de benchmark e publicação de dados.
 
-## Pipeline Overview
+## Visão Geral do Pipeline
 
-The end-to-end flow is:
+O fluxo de ponta a ponta é:
 
-1. `collect`
-2. `grade` (primary judge, usually Claude)
-3. optional `grade-panel` for additional judges
-4. `publish_latest_to_viewer.sh` (when additional judges are run)
+1. `collect` (coletar)
+2. `grade` (avaliar com juiz primário, geralmente Claude)
+3. `grade-panel` opcional para juízes adicionais
+4. `publish_latest_to_viewer.sh` (quando juízes adicionais são executados)
 
-Run stage 1 (collect + primary judge) with:
+Execute a etapa 1 (coleta + juiz primário) com:
 
 ```bash
 ./scripts/run_end_to_end.sh
 ```
 
-Run stage 2 later (remaining judges + publish) with:
+Execute a etapa 2 depois (juízes restantes + publicação) com:
 
 ```bash
 ./scripts/run_end_to_end.sh --skip-collect --skip-primary-judge --with-additional-judges --run-id <run_id> --panel-id <panel_id>
 ```
 
-Run both stages in one go with:
+Execute ambas as etapas de uma vez com:
 
 ```bash
 ./scripts/run_end_to_end.sh --with-additional-judges
 ```
 
-Serve locally after publish:
+Sirva localmente após a publicação:
 
 ```bash
 ./scripts/run_end_to_end.sh --with-additional-judges --serve --port 8877
 ```
 
-Then open `http://localhost:8877/viewer/index.html`.
+Depois abra `http://localhost:8877/viewer/index.html`.
 
-### Grade Panel Policy
+### Política do Painel de Avaliação
 
-Canonical publish pipeline policy:
+Política canônica do pipeline de publicação:
 
-- Exactly `3` judges must be configured in `grade_panel.judge_models`.
-- `panel_mode` is fixed to `full` (every judge runs on every row).
-- `consensus_method` is fixed to `mean`.
-- Legacy disagreement-tiebreak/alternate consensus modes are not supported in the main pipeline.
+- Exatamente `3` juízes devem ser configurados em `grade_panel.judge_models`.
+- `panel_mode` é fixo em `full` (cada juiz avalia todas as linhas).
+- `consensus_method` é fixo em `mean`.
+- Modos legados de desempate por discordância/consenso alternativo não são suportados no pipeline principal.
 
-### Run v2 Without Overwriting v1
+### Executar v2 Sem Sobrescrever v1
 
-Use the v2 config and publish to `data/v2/latest`:
+Use a configuração v2 e publique em `data/v2/latest`:
 
 ```bash
 ./scripts/run_end_to_end.sh --config config.v2.json --viewer-output-dir data/v2/latest --with-additional-judges
 ```
 
-The viewer can switch between versions using the `Benchmark Version` dropdown.
+O visualizador pode alternar entre versões usando o dropdown `Versão do Benchmark`.
 
-### v1 to v2 Release Best Practices
+### Melhores Práticas de Lançamento v1 para v2
 
-Use this checklist before pushing to GitHub/GitHub Pages:
+Use esta checklist antes de enviar para o GitHub/GitHub Pages:
 
-1. Keep versioned published datasets side-by-side:
+1. Mantenha os datasets publicados versionados lado a lado:
    - v1: `data/latest/*`
    - v2: `data/v2/latest/*`
-2. Do not commit local run history (`runs/*`) or ad hoc temp artifacts.
-3. Rebuild v2 question JSON from draft source when question content changes:
-   - source: `drafts/new-questions.md`
-   - builder: `scripts/build_questions_v2_from_draft.py`
-4. Publish datasets only via `scripts/publish_latest_to_viewer.sh` (or `run_end_to_end.sh` wrapper) so artifact normalization stays consistent.
-5. Smoke-test both viewer entry points before publish:
-   - `viewer/index.html` (stable / version-switching)
-   - `viewer/index.v2.html` (v2-focused view)
+2. Não faça commit do histórico de execução local (`runs/*`) ou artefatos temporários ad hoc.
+3. Reconstrua o JSON de perguntas v2 a partir do rascunho quando o conteúdo das perguntas mudar:
+   - fonte: `drafts/new-questions.md`
+   - construtor: `scripts/build_questions_v2_from_draft.py`
+4. Publique datasets apenas via `scripts/publish_latest_to_viewer.sh` (ou wrapper `run_end_to_end.sh`) para que a normalização de artefatos permaneça consistente.
+5. Teste ambos os pontos de entrada do visualizador antes da publicação:
+   - `viewer/index.html` (estável / alternância de versões)
+   - `viewer/index.v2.html` (visão focada v2)
 
-### High-Throughput Collection Knobs (30k+ Queries)
+### Controles de Coleta de Alto Rendimento (30k+ Consultas)
 
-Collection now supports model-aware scheduling and durable checkpoints:
+A coleta agora suporta agendamento por modelo e checkpoints duráveis:
 
-- `parallelism`: global concurrent requests
-- `max_inflight_per_model`: cap per-model concurrency so one provider bucket cannot starve others
-- `rate_limit_requeue`: when true, HTTP 429 rows are requeued with model cooldown instead of immediately failing
-- `rate_limit_cooldown_seconds`, `rate_limit_cooldown_max_seconds`, `rate_limit_cooldown_jitter_seconds`: cooldown controls for rate-limited models
-- `rate_limit_max_attempts`: max total attempts per `sample_id` before final failure
-- `checkpoint_fsync_every`: fsync cadence for `responses.partial.jsonl` and `collect_events.jsonl` durability
+- `parallelism`: requisições concorrentes globais
+- `max_inflight_per_model`: limite de concorrência por modelo para que um bucket de provedor não esgote os outros
+- `rate_limit_requeue`: quando verdadeiro, linhas com HTTP 429 são reenfileiradas com cooldown do modelo em vez de falhar imediatamente
+- `rate_limit_cooldown_seconds`, `rate_limit_cooldown_max_seconds`, `rate_limit_cooldown_jitter_seconds`: controles de cooldown para modelos com limite de taxa
+- `rate_limit_max_attempts`: tentativas totais máximas por `sample_id` antes da falha final
+- `checkpoint_fsync_every`: cadência de fsync para durabilidade de `responses.partial.jsonl` e `collect_events.jsonl`
 
-Operational guidance for speed:
+Orientação operacional para velocidade:
 
-- For very large runs, set `retries=1` so workers do not sleep on backoff internally; let scheduler-level requeue handle cooldown.
-- Increase `parallelism` aggressively (for example 48–96) and tune `max_inflight_per_model` (for example 1–3) based on observed 429 rates.
-- Keep `shuffle_tasks=true` to spread models/questions and smooth bursty limits.
+- Para execuções muito grandes, defina `retries=1` para que os workers não fiquem em backoff interno; deixe o reenfileiramento do agendador lidar com cooldown.
+- Aumente `parallelism` agressivamente (por exemplo 48–96) e ajuste `max_inflight_per_model` (por exemplo 1–3) com base nas taxas de 429 observadas.
+- Mantenha `shuffle_tasks=true` para distribuir modelos/perguntas e suavizar limites intermitentes.
 
-## Publish Existing Run Artifacts
+## Publicar Artefatos de Execução Existentes
 
-Use this when you already have run outputs and only want to refresh a viewer dataset:
+Use isso quando você já tem saídas de execução e só quer atualizar um dataset do visualizador:
 
 ```bash
 ./scripts/publish_latest_to_viewer.sh \
-  --responses-file <path/to/responses.jsonl> \
-  --collection-stats <path/to/collection_stats.json> \
-  --panel-summary <path/to/panel_summary.json> \
-  --aggregate-summary <path/to/aggregate_summary.json> \
-  --aggregate-rows <path/to/aggregate.jsonl> \
-  --output-dir <data/latest-or-data/v2/latest>
+  --responses-file <caminho/para/responses.jsonl> \
+  --collection-stats <caminho/para/collection_stats.json> \
+  --panel-summary <caminho/para/panel_summary.json> \
+  --aggregate-summary <caminho/para/aggregate_summary.json> \
+  --aggregate-rows <caminho/para/aggregate.jsonl> \
+  --output-dir <data/latest-ou-data/v2/latest>
 ```
 
-Publish behavior:
+Comportamento de publicação:
 
-- Default `--publish-mode auto` is safety-first: if output already exists, publish is supplemental (merge by `sample_id`); if output does not exist, publish is replace.
-- To force merge: add `--supplemental` (or `--publish-mode supplemental`).
-- To intentionally overwrite with only incoming artifacts: add `--replace` (or `--publish-mode replace`).
+- O `--publish-mode auto` padrão é seguro: se a saída já existe, a publicação é suplementar (mesclar por `sample_id`); se a saída não existe, a publicação é substituição.
+- Para forçar mesclagem: adicione `--supplemental` (ou `--publish-mode supplemental`).
+- Para sobrescrever intencionalmente apenas com artefatos recebidos: adicione `--replace` (ou `--publish-mode replace`).
 
-The publish step strips local-machine path fields from public artifacts.
-It also sanitizes local path fragments from published JSONL text fields.
+A etapa de publicação remove campos de caminhos de máquina local dos artefatos públicos.
+Também higieniza fragmentos de caminhos locais dos campos de texto JSONL publicados.
 
-## Launch-Date Metadata Pipeline
+## Pipeline de Metadados de Data de Lançamento
 
-Build model launch-date inventory/buckets and export review/candidate/canonical launch datasets:
+Construa inventário/buckets de data de lançamento de modelos e exporte datasets de revisão/candidatos/canônicos:
 
 ```bash
 ./scripts/model_launch_pipeline.py run
 ```
 
-This writes:
+Isso grava:
 
 - `data/model_metadata/tested_models_inventory.csv`
 - `data/model_metadata/model_buckets.csv`
-- `data/model_metadata/model_launch_sources.csv` (template if missing)
+- `data/model_metadata/model_launch_sources.csv` (template se ausente)
 - `data/model_metadata/model_launch_collection.csv`
 - `data/model_metadata/model_launch_judged.csv`
 - `data/model_metadata/model_launch_attempts.csv`
 - `data/model_metadata/model_launch_dates_review.csv`
 - `data/model_metadata/model_launch_dates_candidates.csv`
-- `data/model_metadata/model_launch_dates.csv` (canonical accepted rows)
+- `data/model_metadata/model_launch_dates.csv` (linhas canônicas aceitas)
 
-Publishing also exports:
+A publicação também exporta:
 
 - `data/latest/model_launch_dates.csv`
 - `data/latest/leaderboard_with_launch.csv`
 
-## Current Config Notes
+## Notas de Configuração Atuais
 
-- Main config (v1): `config.json`
-- Main config (v2): `config.v2.json`
-- Question set (v1): `questions.json`
-- Question set (v2): `questions.v2.json` (generated from `drafts/new-questions.md` via `scripts/build_questions_v2_from_draft.py`)
-- Configs include `openai/gpt-5.2-codex` and `openai/gpt-5.3-codex` with reasoning sweeps (`low`, `high`, `xhigh`).
-- Config model lists are aligned to `data/model_metadata/tested_models_inventory.csv` run history, including legacy OpenAI IDs (`openai/gpt-4.1`, `openai/gpt-4o*`, `openai/o3`).
+- Configuração principal (v1): `config.json`
+- Configuração principal (v2): `config.v2.json`
+- Conjunto de perguntas (v1): `questions.json`
+- Conjunto de perguntas (v2): `questions.v2.json` (gerado de `drafts/new-questions.md` via `scripts/build_questions_v2_from_draft.py`)
+- As configurações incluem `openai/gpt-5.2-codex` e `openai/gpt-5.3-codex` com variações de raciocínio (`low`, `high`, `xhigh`).
+- As listas de modelos das configurações são alinhadas ao histórico de execução de `data/model_metadata/tested_models_inventory.csv`, incluindo IDs legados da OpenAI (`openai/gpt-4.1`, `openai/gpt-4o*`, `openai/o3`).
 
-## Repository Layout
+## Estrutura do Repositório
 
-- `scripts/openrouter_benchmark.py`: core CLI (`collect`, `grade`, `grade-panel`, `aggregate`, `report`)
-- `scripts/run_end_to_end.sh`: one-command pipeline runner
-- `scripts/publish_latest_to_viewer.sh`: publish run outputs into a selected viewer dataset dir (`data/latest` or `data/v2/latest`)
-- `scripts/build_questions_v2_from_draft.py`: build `questions.v2.json` from markdown draft
-- `scripts/cleanup_generated_outputs.sh`: remove generated local artifacts
-- `scripts/model_launch_pipeline.py`: launch-date collection/judging pipeline
-- `viewer/index.html`: canonical interactive viewer
-- `viewer/index.v2.html`: v2-focused interactive viewer
-- `data/latest/*`: benchmark v1 published dataset
-- `data/v2/latest/*`: benchmark v2 published dataset
-- `runs/*`: local run history
+- `scripts/openrouter_benchmark.py`: CLI principal (`collect`, `grade`, `grade-panel`, `aggregate`, `report`)
+- `scripts/run_end_to_end.sh`: executor de pipeline em um comando
+- `scripts/publish_latest_to_viewer.sh`: publicar saídas de execução em um diretório de dataset do visualizador selecionado (`data/latest` ou `data/v2/latest`)
+- `scripts/build_questions_v2_from_draft.py`: construir `questions.v2.json` a partir de rascunho em markdown
+- `scripts/cleanup_generated_outputs.sh`: remover artefatos locais gerados
+- `scripts/model_launch_pipeline.py`: pipeline de coleta/julgamento de datas de lançamento
+- `viewer/index.html`: visualizador interativo canônico
+- `viewer/index.v2.html`: visualizador interativo focado em v2
+- `data/latest/*`: dataset v1 publicado do benchmark
+- `data/v2/latest/*`: dataset v2 publicado do benchmark
+- `runs/*`: histórico de execução local
 
-## Published Dataset Files
+## Arquivos do Dataset Publicado
 
-`data/latest` contains:
+`data/latest` contém:
 
 - `responses.jsonl`
 - `collection_stats.json`
@@ -174,22 +174,22 @@ Publishing also exports:
 - `model_launch_dates.csv`
 - `manifest.json`
 
-Collection run artifacts under `runs/<run_id>/` now also include flattened per-row usage metrics in `responses.jsonl` and `responses_review.csv`:
+Artefatos de execução de coleta em `runs/<run_id>/` agora também incluem métricas de uso achatadas por linha em `responses.jsonl` e `responses_review.csv`:
 
-- token counts (`response_prompt_tokens`, `response_completion_tokens`, `response_total_tokens`, `response_reasoning_tokens`)
-- cache details (`response_cached_prompt_tokens`, `response_cache_write_tokens`)
-- cost fields (`response_cost_usd` and upstream cost breakdown fields)
-- derived metrics (`response_char_count`, `response_tokens_per_second`)
+- contagem de tokens (`response_prompt_tokens`, `response_completion_tokens`, `response_total_tokens`, `response_reasoning_tokens`)
+- detalhes de cache (`response_cached_prompt_tokens`, `response_cache_write_tokens`)
+- campos de custo (`response_cost_usd` e campos de detalhamento de custo upstream)
+- métricas derivadas (`response_char_count`, `response_tokens_per_second`)
 
-And `collection_stats.json` includes `usage_summary` with totals/averages overall and by model.
+E `collection_stats.json` inclui `usage_summary` com totais/médias gerais e por modelo.
 
-## Environment
+## Ambiente
 
-Required:
+Obrigatório:
 
 - `OPENROUTER_API_KEY`
 
-Optional:
+Opcional:
 
 - `OPENROUTER_REFERER`
 - `OPENROUTER_APP_NAME`

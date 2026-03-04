@@ -1,145 +1,145 @@
 <h1>
-  <img src="docs/images/bsbench.png" alt="BullshitBench logo" width="64" />
+  <img src="docs/images/bsbench.png" alt="Logo do BullshitBench" width="64" />
   BullshitBench v2
 </h1>
 
-BullshitBench measures whether models detect nonsense, call it out clearly, and avoid confidently continuing with invalid assumptions.
+O BullshitBench mede se os modelos detectam absurdos, os apontam claramente e evitam continuar com confiança em premissas inválidas.
 
-- Public viewer (latest): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
-- Updated: 2026-03-04
+- Visualizador público (mais recente): https://inematds.github.io/bs-benchmark/viewer/index.v2.html
+- Atualizado em: 2026-03-04
 
-## Latest Changelog Entry (2026-03-04)
+## Última Entrada do Changelog (2026-03-04)
 
-- Added benchmark runs for:
+- Adicionadas execuções de benchmark para:
   - `openai/gpt-5.3-chat`
   - `google/gemini-3.1-flash-lite-preview`
-- Set launch date metadata for both models to `2026-03-04` (today) and propagated it across v1/v2 launch metadata and leaderboard launch views.
-- Updated `viewer/index.v2.html` launch-metadata loading to merge embedded + CSV launch rows and fetch with `cache: "no-store"` so the newest launch dates always render in charts.
-- Full details: [CHANGELOG.md](CHANGELOG.md)
+- Definida data de lançamento de metadados para ambos modelos como `2026-03-04` (hoje) e propagada pelos metadados de lançamento v1/v2 e visualizações do leaderboard.
+- Atualizado `viewer/index.v2.html` para carregar metadados de lançamento mesclando linhas embutidas + CSV e buscar com `cache: "no-store"` para que as datas de lançamento mais recentes sempre apareçam nos gráficos.
+- Detalhes completos: [CHANGELOG.md](CHANGELOG.md)
 
-## v2 Changelog Highlights
+## Destaques do Changelog v2
 
-- `100` new nonsense questions in the v2 set.
-- Domain-specific question coverage across `5` domains: `software` (40), `finance` (15), `legal` (15), `medical` (15), `physics` (15).
-- New visualizations in the v2 viewer, including:
-  - Detection Rate by Model (stacked mix bars)
-  - Domain Landscape (overall vs domain detection mix)
-  - Detection Rate Over Time
-  - Do Newer Models Perform Better?
-  - Does Thinking Harder Help? (tokens/cost toggle)
+- `100` novas perguntas absurdas no conjunto v2.
+- Cobertura de perguntas por domínio em `5` domínios: `software` (40), `finanças` (15), `jurídico` (15), `medicina` (15), `física` (15).
+- Novas visualizações no viewer v2, incluindo:
+  - Taxa de Detecção por Modelo (barras empilhadas)
+  - Panorama por Domínio (detecção geral vs por domínio)
+  - Taxa de Detecção ao Longo do Tempo
+  - Modelos Mais Novos Têm Desempenho Melhor?
+  - Pensar Mais Ajuda? (alternância tokens/custo)
 
-## Viewer Walkthrough (v2)
+## Guia do Visualizador (v2)
 
-The screenshots below follow the same flow as `viewer/index.v2.html`, starting with the main chart.
+As capturas de tela abaixo seguem o mesmo fluxo de `viewer/index.v2.html`, começando pelo gráfico principal.
 
-### 1. Detection Rate by Model (Main Chart)
+### 1. Taxa de Detecção por Modelo (Gráfico Principal)
 
-Primary leaderboard-style view showing each model's green/amber/red split.
+Visão principal estilo leaderboard mostrando a distribuição verde/âmbar/vermelho de cada modelo.
 
-![BullshitBench v2 - Detection Rate by Model](docs/images/v2-detection-rate-by-model.png)
+![BullshitBench v2 - Taxa de Detecção por Modelo](docs/images/v2-detection-rate-by-model.png)
 
-### 2. Domain Landscape
+### 2. Panorama por Domínio
 
-Detection mix by domain to compare overall performance vs each domain at a glance.
+Distribuição de detecção por domínio para comparar desempenho geral vs cada domínio de relance.
 
-![BullshitBench v2 - Domain Landscape](docs/images/v2-domain-landscape.png)
+![BullshitBench v2 - Panorama por Domínio](docs/images/v2-domain-landscape.png)
 
-### 3. Detection Rate Over Time
+### 3. Taxa de Detecção ao Longo do Tempo
 
-Release-date trend view focused on Anthropic, OpenAI, and Google.
+Visão de tendência por data de lançamento focada em Anthropic, OpenAI e Google.
 
-![BullshitBench v2 - Detection Rate Over Time](docs/images/v2-detection-rate-over-time.png)
+![BullshitBench v2 - Taxa de Detecção ao Longo do Tempo](docs/images/v2-detection-rate-over-time.png)
 
-### 4. Do Newer Models Perform Better?
+### 4. Modelos Mais Novos Têm Desempenho Melhor?
 
-All-model scatter by release date vs. green rate.
+Dispersão de todos os modelos por data de lançamento vs taxa verde.
 
-![BullshitBench v2 - Do Newer Models Perform Better](docs/images/v2-do-newer-models-perform-better.png)
+![BullshitBench v2 - Modelos Mais Novos Têm Desempenho Melhor](docs/images/v2-do-newer-models-perform-better.png)
 
-### 5. Does Thinking Harder Help?
+### 5. Pensar Mais Ajuda?
 
-Reasoning scatter (tokens/cost toggle in the viewer) vs. green rate.
+Dispersão de raciocínio (alternância tokens/custo no viewer) vs taxa verde.
 
-![BullshitBench v2 - Does Thinking Harder Help](docs/images/v2-does-thinking-harder-help.png)
+![BullshitBench v2 - Pensar Mais Ajuda](docs/images/v2-does-thinking-harder-help.png)
 
-## Benchmark Scope (v2)
+## Escopo do Benchmark (v2)
 
-- `100` nonsense prompts total.
-- `5` domain groups: `software` (40), `finance` (15), `legal` (15), `medical` (15), `physics` (15).
-- `13` nonsense techniques (for example: `plausible_nonexistent_framework`, `misapplied_mechanism`, `nested_nonsense`, `specificity_trap`).
-- `3`-judge panel aggregation (`anthropic/claude-sonnet-4.6`, `openai/gpt-5.2`, `google/gemini-3.1-pro-preview`) using `full` panel mode + `mean` aggregation.
-- Published v2 leaderboard currently includes `72` model/reasoning rows.
+- `100` prompts absurdos no total.
+- `5` grupos de domínio: `software` (40), `finanças` (15), `jurídico` (15), `medicina` (15), `física` (15).
+- `13` técnicas de absurdo (por exemplo: `plausible_nonexistent_framework`, `misapplied_mechanism`, `nested_nonsense`, `specificity_trap`).
+- Agregação de painel com `3` juízes (`anthropic/claude-sonnet-4.6`, `openai/gpt-5.2`, `google/gemini-3.1-pro-preview`) usando modo `full` do painel + agregação `mean`.
+- O leaderboard v2 publicado atualmente inclui `72` linhas de modelo/raciocínio.
 
-## What This Measures
+## O Que Isso Mede
 
-- `Clear Pushback`: the model clearly rejects the broken premise.
-- `Partial Challenge`: the model flags issues but still engages the bad premise.
-- `Accepted Nonsense`: the model treats the nonsense as valid.
+- `Rejeição Clara`: o modelo rejeita claramente a premissa inválida.
+- `Desafio Parcial`: o modelo aponta problemas mas ainda segue a premissa inválida.
+- `Absurdo Aceito`: o modelo trata o absurdo como válido.
 
-## Quick Start
+## Início Rápido
 
-1. Set your API key:
+1. Configure sua chave de API:
 
 ```bash
-export OPENROUTER_API_KEY=your_key_here
+export OPENROUTER_API_KEY=sua_chave_aqui
 ```
 
-2. Run collection + primary judge (Claude by default):
+2. Execute a coleta + juiz primário (Claude por padrão):
 
 ```bash
 ./scripts/run_end_to_end.sh
 ```
 
-3. Run v2 end-to-end and publish into the dedicated v2 dataset:
+3. Execute v2 de ponta a ponta e publique no dataset v2 dedicado:
 
 ```bash
 ./scripts/run_end_to_end.sh --config config.v2.json --viewer-output-dir data/v2/latest --with-additional-judges
 ```
 
-4. Optionally run the default config end-to-end (publishes to `data/latest`):
+4. Opcionalmente execute a configuração padrão de ponta a ponta (publica em `data/latest`):
 
 ```bash
 ./scripts/run_end_to_end.sh --with-additional-judges
 ```
 
-5. Open the viewer:
+5. Abra o visualizador:
 
-- Published viewer (latest): https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html
-- Local viewer (optional):
+- Visualizador publicado (mais recente): https://inematds.github.io/bs-benchmark/viewer/index.v2.html
+- Visualizador local (opcional):
 
 ```bash
 ./scripts/run_end_to_end.sh --with-additional-judges --serve --port 8877
 ```
 
-Then open `http://localhost:8877/viewer/index.v2.html`.
-Use the `Benchmark Version` dropdown in the filters panel to switch between published datasets (for example `v1` and `v2`).
+Depois abra `http://localhost:8877/viewer/index.v2.html`.
+Use o dropdown `Versão do Benchmark` no painel de filtros para alternar entre os datasets publicados (por exemplo `v1` e `v2`).
 
-## v1 to v2
+## v1 para v2
 
-- v1 dataset remains in `data/latest`.
-- v2 dataset is published in `data/v2/latest`.
-- v2 question set comes from `drafts/new-questions.md` via `scripts/build_questions_v2_from_draft.py`.
-- Canonical judging is now fixed to exactly 3 judges on every row with mean aggregation (legacy disagreement-tiebreak mode is retired from the main pipeline).
-- Release notes and notable changes are tracked in `CHANGELOG.md`.
+- O dataset v1 permanece em `data/latest`.
+- O dataset v2 é publicado em `data/v2/latest`.
+- O conjunto de perguntas v2 vem de `drafts/new-questions.md` via `scripts/build_questions_v2_from_draft.py`.
+- O julgamento canônico agora é fixo em exatamente 3 juízes em cada linha com agregação por média (o modo legado de desempate por discordância foi removido do pipeline principal).
+- Notas de lançamento e mudanças notáveis são rastreadas em `CHANGELOG.md`.
 
-## Documentation
+## Documentação
 
-- [Technical Guide](docs/TECHNICAL.md): pipeline operations, publishing artifacts, launch-date metadata workflow, repo layout, env vars.
-- [Changelog](CHANGELOG.md): v1 to v2 release notes and publish-history highlights.
-- [Question Set](questions.json): benchmark questions and scoring metadata.
-- [Question Set v2](questions.v2.json): v2 question pool generated from `drafts/new-questions.md`.
-- [Config](config.json): default model/pipeline settings.
-- [Config v2](config.v2.json): v2-ready config (uses `questions.v2.json`).
+- [Guia Técnico](docs/TECHNICAL.md): operações do pipeline, publicação de artefatos, fluxo de metadados de data de lançamento, estrutura do repositório, variáveis de ambiente.
+- [Changelog](CHANGELOG.md): notas de lançamento v1 para v2 e destaques do histórico de publicação.
+- [Conjunto de Perguntas](questions.json): perguntas do benchmark e metadados de pontuação.
+- [Conjunto de Perguntas v2](questions.v2.json): conjunto de perguntas v2 gerado a partir de `drafts/new-questions.md`.
+- [Configuração](config.json): configurações padrão de modelo/pipeline.
+- [Configuração v2](config.v2.json): configuração pronta para v2 (usa `questions.v2.json`).
 
-## Notes
+## Observações
 
-- This README is intentionally audience-facing.
-- Technical and maintainer-oriented content lives in `docs/TECHNICAL.md`.
+- Este README é intencionalmente voltado ao público.
+- Conteúdo técnico e voltado para mantenedores está em `docs/TECHNICAL.md`.
 
-## Star History 
+## Histórico de Estrelas
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=petergpt/bullshit-benchmark&type=Date&theme=dark&cachebust=20260304" />
-  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=petergpt/bullshit-benchmark&type=Date&cachebust=20260304" />
-  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=petergpt/bullshit-benchmark&type=Date&cachebust=20260304" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&theme=dark&cachebust=20260304" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20260304" />
+  <img alt="Gráfico de Histórico de Estrelas" src="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20260304" />
 </picture>

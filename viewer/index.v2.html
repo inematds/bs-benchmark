@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BullshitBench v2 Explorer</title>
+  <title>BullshitBench v2 Explorador</title>
   <link rel="icon" href="../docs/images/bsbench.png">
   <style>
     :root {
@@ -901,21 +901,21 @@
         <img class="hero-logo" src="../docs/images/bsbench.png" alt="BullshitBench logo">
         <div>
           <h1 id="heroTitle">BullshitBench v2</h1>
-          <p class="hero-subtitle" id="heroSubtitle">Measures models' ability to detect nonsense across 100 plausible-sounding nonsense prompts in software, medical, legal, finance, and physics.</p>
+          <p class="hero-subtitle" id="heroSubtitle">Mede a capacidade dos modelos de detectar absurdos em 100 prompts absurdos com aparência plausível em software, medicina, jurídico, finanças e física.</p>
           <label class="hero-version-inline" for="benchmarkVersionSelect">
-            <select id="benchmarkVersionSelect" aria-label="Benchmark version">
-              <option value="v2">V2 (New)</option>
+            <select id="benchmarkVersionSelect" aria-label="Versão do benchmark">
+              <option value="v2">V2 (Novo)</option>
               <option value="v1">V1 (Original)</option>
             </select>
           </label>
         </div>
       </div>
       <div class="hero-meta">
-        <span class="hero-created">Created by Peter Gostev</span>
+        <span class="hero-created">Criado por Peter Gostev</span>
         <div class="hero-links">
           <a class="hero-link" href="https://x.com/petergostev" target="_blank" rel="noopener noreferrer">X</a>
           <a class="hero-link" href="https://www.linkedin.com/in/peter-gostev/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="hero-link" href="https://github.com/petergpt/bullshit-benchmark" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="hero-link" href="https://github.com/inematds/bs-benchmark" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </header>
@@ -923,45 +923,45 @@
     <!-- Sticky Domain Scope -->
     <section class="domain-bar" id="domainBar">
       <div class="domain-bar-top">
-        <span class="domain-bar-label">Domain Scope</span>
+        <span class="domain-bar-label">Escopo por Domínio</span>
         <div class="domain-bar-pills" id="domainBarPills"></div>
         <span class="domain-bar-sep"></span>
-        <span class="filter-count" id="domainBarSummary">Overall</span>
-        <button type="button" id="domainBarFilterToggle" class="domain-bar-filter-toggle alt" aria-controls="filtersCollapsible" aria-expanded="false">Show Filters</button>
+        <span class="filter-count" id="domainBarSummary">Geral</span>
+        <button type="button" id="domainBarFilterToggle" class="domain-bar-filter-toggle alt" aria-controls="filtersCollapsible" aria-expanded="false">Mostrar Filtros</button>
       </div>
       <details id="filtersCollapsible" class="domain-bar-filters">
-        <summary>Filters</summary>
+        <summary>Filtros</summary>
         <div class="domain-bar-filters-body">
           <div class="filters-grid">
-            <label><span>Search</span><input id="filterQuery" type="text" placeholder="Model, question id, prompt..."></label>
+            <label><span>Buscar</span><input id="filterQuery" type="text" placeholder="Modelo, id da pergunta, prompt..."></label>
             <label><span>Org</span><select id="filterOrg"></select></label>
-            <label><span>Reasoning</span><select id="filterReasoning"></select></label>
-            <label><span>Technique</span><select id="filterTechnique"></select></label>
+            <label><span>Raciocínio</span><select id="filterReasoning"></select></label>
+            <label><span>Técnica</span><select id="filterTechnique"></select></label>
             <select id="filterDifficulty" style="display:none;" aria-hidden="true" tabindex="-1"><option value="all">All</option></select>
             <select id="filterDomainGroup" style="display:none;" aria-hidden="true" tabindex="-1"></select>
           </div>
           <div class="judge-filter-row">
-            <span class="small-note">Judges:</span>
-            <label class="judge-chip"><input type="checkbox" id="judge1Toggle" checked><span id="judge1Label">Loading...</span></label>
-            <label class="judge-chip"><input type="checkbox" id="judge2Toggle" checked><span id="judge2Label">Loading...</span></label>
-            <label class="judge-chip"><input type="checkbox" id="judge3Toggle" checked><span id="judge3Label">Loading...</span></label>
+            <span class="small-note">Juízes:</span>
+            <label class="judge-chip"><input type="checkbox" id="judge1Toggle" checked><span id="judge1Label">Carregando...</span></label>
+            <label class="judge-chip"><input type="checkbox" id="judge2Toggle" checked><span id="judge2Label">Carregando...</span></label>
+            <label class="judge-chip"><input type="checkbox" id="judge3Toggle" checked><span id="judge3Label">Carregando...</span></label>
           </div>
           <div class="filter-meta-row">
-            <span class="small-note">Outcome:</span>
+            <span class="small-note">Resultado:</span>
             <div class="score-filter" id="scoreFilter"></div>
             <div class="variant-mode">
-              <span class="small-note">Variants:</span>
-              <button id="topVariantsToggleBtn" class="alt variant-mode-toggle" type="button" aria-pressed="false">All variants</button>
+              <span class="small-note">Variantes:</span>
+              <button id="topVariantsToggleBtn" class="alt variant-mode-toggle" type="button" aria-pressed="false">Todas as variantes</button>
             </div>
           </div>
           <details class="model-visibility-block">
-            <summary>Model visibility</summary>
+            <summary>Visibilidade do modelo</summary>
             <div class="model-visibility-inner">
-              <label><span>Search models</span><input id="filterModelSearch" type="text" placeholder="Search model names..."></label>
+              <label><span>Buscar modelos</span><input id="filterModelSearch" type="text" placeholder="Buscar nomes de modelos..."></label>
               <div class="button-row">
-                <button id="showAllBtn" class="alt" type="button">Show All</button>
-                <button id="hideAllBtn" class="alt" type="button">Hide All</button>
-                <button id="clearFiltersBtn" class="alt" type="button">Reset All Filters</button>
+                <button id="showAllBtn" class="alt" type="button">Mostrar Todos</button>
+                <button id="hideAllBtn" class="alt" type="button">Ocultar Todos</button>
+                <button id="clearFiltersBtn" class="alt" type="button">Redefinir Todos os Filtros</button>
               </div>
               <div id="modelToggleGrid" class="model-toggle-grid"></div>
             </div>
@@ -975,13 +975,13 @@
     <section class="panel">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px;">
         <div>
-          <h2 data-bench-heading="Detection Rate by Model" style="margin:0;">BullshitBench v2: Detection Rate by Model</h2>
-          <p class="subtle" style="margin-top:2px;">Percentage of nonsense questions each model detected (green), partially challenged (amber), or accepted (red).</p>
+          <h2 data-bench-heading="Detection Rate by Model" style="margin:0;">BullshitBench v2: Taxa de Detecção por Modelo</h2>
+          <p class="subtle" style="margin-top:2px;">Percentual de perguntas absurdas que cada modelo detectou (verde), desafiou parcialmente (âmbar) ou aceitou (vermelho).</p>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="score-chip"><span class="dot score2"></span>Clear Pushback</span>
-          <span class="score-chip"><span class="dot score1"></span>Partial Challenge</span>
-          <span class="score-chip"><span class="dot score0"></span>Accepted Nonsense</span>
+          <span class="score-chip"><span class="dot score2"></span>Rejeição Clara</span>
+          <span class="score-chip"><span class="dot score1"></span>Desafio Parcial</span>
+          <span class="score-chip"><span class="dot score0"></span>Absurdo Aceito</span>
         </div>
       </div>
       <div id="modelAvgSummary" class="model-avg-summary"></div>
@@ -993,18 +993,18 @@
     <section class="panel hidden-block" id="drilldownPanel">
       <div class="drilldown-head">
         <div>
-          <h2 id="drilldownTitle">Selected Segment</h2>
+          <h2 id="drilldownTitle">Segmento Selecionado</h2>
           <p class="small-note" id="drilldownMeta"></p>
         </div>
-        <button type="button" id="clearDrilldownBtn" class="alt">Clear</button>
+        <button type="button" id="clearDrilldownBtn" class="alt">Limpar</button>
       </div>
       <div id="drilldownBody" class="drilldown-list"></div>
     </section>
 
     <!-- Domain Performance Heatmap -->
     <section class="panel" id="domainHeatmapSection">
-      <h2 data-bench-heading="Detection Rate by Domain">BullshitBench v2: Detection Rate by Domain</h2>
-      <p class="subtle">Green rate (%) for each model across the 5 domain groups. Darker green = higher detection. Click any cell to see example responses.</p>
+      <h2 data-bench-heading="Detection Rate by Domain">BullshitBench v2: Taxa de Detecção por Domínio</h2>
+      <p class="subtle">Taxa verde (%) para cada modelo nos 5 grupos de domínio. Verde mais escuro = maior detecção. Clique em qualquer célula para ver respostas de exemplo.</p>
       <div class="heatmap-wrap" style="max-height:520px;overflow:auto;">
         <table class="heatmap" id="domainHeatmap"></table>
       </div>
@@ -1012,12 +1012,12 @@
     </section>
 
     <section class="panel" id="domainInsightsSection">
-      <h2 data-bench-heading="Domain Landscape">BullshitBench v2: Domain Landscape</h2>
-      <p class="subtle">Detection mix by domain to compare overall vs each domain at a glance.</p>
+      <h2 data-bench-heading="Domain Landscape">BullshitBench v2: Panorama por Domínio</h2>
+      <p class="subtle">Mix de detecção por domínio para comparar o geral vs cada domínio de relance.</p>
       <div class="domain-insights-grid">
         <div class="domain-insight-card">
           <div class="domain-insight-head">
-            <h3>Average Detection by Domain</h3>
+            <h3>Detecção Média por Domínio</h3>
           </div>
           <div id="domainAvgBars" class="domain-avg-bars"></div>
         </div>
@@ -1026,12 +1026,12 @@
 
     <!-- Release Date vs Green Score: All Orgs -->
     <section class="panel">
-      <h2 data-bench-heading="Detection Rate Over Time">BullshitBench v2: Detection Rate Over Time</h2>
-      <p class="subtle">Release date vs. green rate (clear pushback %) for all organizations. Best model per release window shown.</p>
+      <h2 data-bench-heading="Detection Rate Over Time">BullshitBench v2: Taxa de Detecção ao Longo do Tempo</h2>
+      <p class="subtle">Data de lançamento vs. taxa verde (% de rejeição clara) para todas as organizações. Melhor modelo por janela de lançamento exibido.</p>
       <div class="launch-controls">
         <label class="launch-toggle">
           <input type="checkbox" id="launchBestOnlyToggle" checked>
-          <span>Best per release window only</span>
+          <span>Apenas melhores por janela de lançamento</span>
         </label>
       </div>
       <svg id="launchAllOrgs" class="scatter-svg" viewBox="0 0 1200 480" role="img"></svg>
@@ -1041,20 +1041,20 @@
     <!-- 2x2 Chart Grid -->
     <div class="two-col">
       <section class="panel">
-        <h2 data-bench-heading="Do Newer Models Perform Better?">BullshitBench v2: Do Newer Models Perform Better?</h2>
-        <p class="subtle">Every tested model plotted by release date vs. green rate.</p>
+        <h2 data-bench-heading="Do Newer Models Perform Better?">BullshitBench v2: Modelos Mais Novos Têm Desempenho Melhor?</h2>
+        <p class="subtle">Todos os modelos testados plotados por data de lançamento vs. taxa verde.</p>
         <div class="chart-legend" id="allModelsLegend"></div>
         <svg id="allModelsScatter" class="scatter-svg" viewBox="0 0 600 420"></svg>
       </section>
       <section class="panel">
         <div class="reasoning-panel-head">
-          <h2 id="reasoningScatterTitle" data-bench-heading="Does Thinking Harder Help?">BullshitBench v2: Does Thinking Harder Help?</h2>
-          <div class="reasoning-mode-switch" role="group" aria-label="Reasoning chart mode">
+          <h2 id="reasoningScatterTitle" data-bench-heading="Does Thinking Harder Help?">BullshitBench v2: Pensar Mais Ajuda?</h2>
+          <div class="reasoning-mode-switch" role="group" aria-label="Modo do gráfico de raciocínio">
             <button type="button" class="reasoning-mode-btn is-active" data-reasoning-mode="tokens">Tokens</button>
-            <button type="button" class="reasoning-mode-btn" data-reasoning-mode="cost">Cost</button>
+            <button type="button" class="reasoning-mode-btn" data-reasoning-mode="cost">Custo</button>
           </div>
         </div>
-        <p class="subtle" id="reasoningScatterSubtitle">Average reasoning tokens used vs. green rate. More reasoning tokens = model "thinking harder".</p>
+        <p class="subtle" id="reasoningScatterSubtitle">Média de tokens de raciocínio usados vs. taxa verde. Mais tokens de raciocínio = modelo "pensando mais".</p>
         <div class="chart-legend" id="reasoningScatterLegend"></div>
         <svg id="reasoningScatter" class="scatter-svg" viewBox="0 0 600 420"></svg>
       </section>
@@ -1062,23 +1062,23 @@
 
     <!-- Leaderboard -->
     <section class="panel">
-      <h2 data-bench-heading="Leaderboard">BullshitBench v2: Leaderboard</h2>
+      <h2 data-bench-heading="Leaderboard">BullshitBench v2: Ranking</h2>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="orgColorKey"></div>
       <div class="table-wrap" style="max-height:600px;">
         <table>
           <thead id="lbHead">
             <tr>
-              <th class="sortable" data-key="rank">Rank <span class="sort-ind" data-ind="rank"></span></th>
-              <th class="sortable" data-key="model">Model <span class="sort-ind" data-ind="model"></span></th>
+              <th class="sortable" data-key="rank">Pos. <span class="sort-ind" data-ind="rank"></span></th>
+              <th class="sortable" data-key="model">Modelo <span class="sort-ind" data-ind="model"></span></th>
               <th class="sortable" data-key="org">Org <span class="sort-ind" data-ind="org"></span></th>
-              <th class="sortable" data-key="reasoning">Reasoning <span class="sort-ind" data-ind="reasoning"></span></th>
-              <th class="sortable" data-key="greenRate">Green % <span class="sort-ind" data-ind="greenRate"></span></th>
-              <th class="sortable" data-key="amberRate">Amber % <span class="sort-ind" data-ind="amberRate"></span></th>
-              <th class="sortable" data-key="redRate">Red % <span class="sort-ind" data-ind="redRate"></span></th>
+              <th class="sortable" data-key="reasoning">Raciocínio <span class="sort-ind" data-ind="reasoning"></span></th>
+              <th class="sortable" data-key="greenRate">Verde % <span class="sort-ind" data-ind="greenRate"></span></th>
+              <th class="sortable" data-key="amberRate">Âmbar % <span class="sort-ind" data-ind="amberRate"></span></th>
+              <th class="sortable" data-key="redRate">Vermelho % <span class="sort-ind" data-ind="redRate"></span></th>
               <th>Mix</th>
-              <th class="sortable" data-key="avgTokens">Avg Tokens <span class="sort-ind" data-ind="avgTokens"></span></th>
-              <th class="sortable" data-key="avgCost">Avg Cost <span class="sort-ind" data-ind="avgCost"></span></th>
-              <th class="sortable" data-key="rows">Rows <span class="sort-ind" data-ind="rows"></span></th>
+              <th class="sortable" data-key="avgTokens">Tokens Médios <span class="sort-ind" data-ind="avgTokens"></span></th>
+              <th class="sortable" data-key="avgCost">Custo Médio <span class="sort-ind" data-ind="avgCost"></span></th>
+              <th class="sortable" data-key="rows">Linhas <span class="sort-ind" data-ind="rows"></span></th>
             </tr>
           </thead>
           <tbody id="lbBody"></tbody>
@@ -1088,29 +1088,29 @@
 
     <!-- Technique Performance (deep-dive) -->
     <section class="panel" id="techniqueSection">
-      <h2 data-bench-heading="Detection Rate by Technique">BullshitBench v2: Detection Rate by Technique</h2>
-      <p class="subtle">Average detection rate across all models for each BS technique. Lower = harder for models to detect.</p>
+      <h2 data-bench-heading="Detection Rate by Technique">BullshitBench v2: Taxa de Detecção por Técnica</h2>
+      <p class="subtle">Taxa média de detecção em todos os modelos para cada técnica BS. Menor = mais difícil para os modelos detectarem.</p>
       <div id="techniqueChart" style="display:grid;gap:6px;"></div>
     </section>
 
     <!-- Response Viewer -->
     <section class="panel">
-      <h2 data-bench-heading="Response Viewer">BullshitBench v2: Response Viewer</h2>
+      <h2 data-bench-heading="Response Viewer">BullshitBench v2: Visualizador de Respostas</h2>
       <div class="compare-controls">
-        <label><span>Question</span><select id="compareQuestion"></select></label>
-        <label><span>Model A</span><select id="compareModelA"></select></label>
-        <label><span>Model B</span><select id="compareModelB"></select></label>
-        <label><span>View</span>
+        <label><span>Pergunta</span><select id="compareQuestion"></select></label>
+        <label><span>Modelo A</span><select id="compareModelA"></select></label>
+        <label><span>Modelo B</span><select id="compareModelB"></select></label>
+        <label><span>Visualizar</span>
           <select id="compareViewMode">
-            <option value="pair">Compare 2</option>
-            <option value="all">Show all</option>
+            <option value="pair">Comparar 2</option>
+            <option value="all">Mostrar tudo</option>
           </select>
         </label>
       </div>
       <div class="button-row" style="margin-bottom:12px;">
-        <button type="button" id="randomBtn">Random Green vs Red</button>
-        <button type="button" id="randomBestBtn" class="alt">Random Best Question</button>
-        <button type="button" id="randomWorstBtn" class="alt">Random Worst Question</button>
+        <button type="button" id="randomBtn">Verde vs Vermelho Aleatório</button>
+        <button type="button" id="randomBestBtn" class="alt">Melhor Pergunta Aleatória</button>
+        <button type="button" id="randomWorstBtn" class="alt">Pior Pergunta Aleatória</button>
       </div>
       <div id="questionCtx" class="question-context"></div>
       <div id="pairGrid" class="ab-grid">
@@ -1127,10 +1127,10 @@
 const BENCHMARK_CONFIGS = {
   v2: {
     key: "v2",
-    displayLabel: "V2 (New)",
+    displayLabel: "V2 (Novo)",
     heroTitle: "BullshitBench v2",
     heroSubtitle:
-      "Measures models' ability to detect nonsense across 100 plausible-sounding nonsense prompts in software, medical, legal, finance, and physics.",
+      "Mede a capacidade dos modelos de detectar absurdos em 100 prompts absurdos com aparência plausível em software, medicina, jurídico, finanças e física.",
     loadingLabel: "v2",
     titlePrefix: "BullshitBench v2",
     questionsPaths: ["../questions.v2.json"],
@@ -1142,7 +1142,7 @@ const BENCHMARK_CONFIGS = {
     showDomainInsights: true,
     dataSources: [
       {
-        name: "Published v2 dataset",
+        name: "Dataset v2 publicado",
         basePath: "../data/v2/latest",
         supportsAggregate: true,
         supportsPanelSummary: true,
@@ -1155,7 +1155,7 @@ const BENCHMARK_CONFIGS = {
     displayLabel: "V1 (Original)",
     heroTitle: "BullshitBench v1",
     heroSubtitle:
-      "Original BullshitBench release using the v1 dataset and question set.",
+      "Lançamento original do BullshitBench usando o dataset e conjunto de perguntas v1.",
     loadingLabel: "v1",
     titlePrefix: "BullshitBench v1",
     questionsPaths: ["../questions.json"],
@@ -1167,7 +1167,7 @@ const BENCHMARK_CONFIGS = {
     showDomainInsights: false,
     dataSources: [
       {
-        name: "Published v1 dataset",
+        name: "Dataset v1 publicado",
         basePath: "../data/latest",
         supportsAggregate: true,
         supportsPanelSummary: true,
@@ -1194,10 +1194,10 @@ function setBenchmarkInUrl(nextVersion) {
 }
 
 const CATEGORY_META = {
-  green:  { label: "Green",  colorClass: "score2", short: "Green" },
-  amber:  { label: "Amber",  colorClass: "score1", short: "Amber" },
-  red:    { label: "Red",    colorClass: "score0", short: "Red" },
-  error:  { label: "Error",  colorClass: "error",  short: "Error" },
+  green:  { label: "Verde",  colorClass: "score2", short: "Verde" },
+  amber:  { label: "Âmbar",  colorClass: "score1", short: "Âmbar" },
+  red:    { label: "Vermelho",    colorClass: "score0", short: "Vermelho" },
+  error:  { label: "Erro",  colorClass: "error",  short: "Erro" },
 };
 const CATEGORY_ORDER = ["green", "amber", "red", "error"];
 
@@ -1216,39 +1216,39 @@ const ORG_NAMES = {
   "prime-intellect": "Prime Intellect", "z-ai": "Z.AI",
 };
 const DOMAIN_GROUP_LABELS = {
-  legal: "Legal", medical: "Medical", software: "Software", finance: "Finance", physics: "Physics",
+  legal: "Jurídico", medical: "Medicina", software: "Software", finance: "Finanças", physics: "Física",
 };
 const DOMAIN_FILTER_ORDER = ["software", "finance", "legal", "medical", "physics"];
 const DIFFICULTY_LABELS = {
-  L1: "L1 \u2014 Jargon Soup", L2: "L2 \u2014 Wrong Relationship", L3: "L3 \u2014 Subtle Premise Violation",
-  pnf: "Plausible Nonexistent Framework", mm: "Misapplied Mechanism",
-  af: "Authoritative Framing", fg: "False Granularity",
-  wua: "Wrong Unit of Analysis", tce: "Temporal Category Error",
-  rm: "Reified Metaphor", cds: "Cross-Domain Stitching",
-  st: "Specificity Trap", fa: "Fabricated Authority",
-  scf: "Sunk Cost Framing", ce: "Confident Extrapolation", nn: "Nested Nonsense",
+  L1: "L1 \u2014 Sopa de Jargão", L2: "L2 \u2014 Relação Errada", L3: "L3 \u2014 Violação Sutil de Premissa",
+  pnf: "Framework Plausível Inexistente", mm: "Mecanismo Mal Aplicado",
+  af: "Enquadramento Autoritativo", fg: "Falsa Granularidade",
+  wua: "Unidade de Análise Errada", tce: "Erro de Categoria Temporal",
+  rm: "Metáfora Reificada", cds: "Costura Entre Domínios",
+  st: "Armadilha de Especificidade", fa: "Autoridade Fabricada",
+  scf: "Enquadramento de Custo Afundado", ce: "Extrapolação Confiante", nn: "Absurdo Aninhado",
 };
 const TECHNIQUE_LABELS = {
-  authoritative_framing_of_nothing: "Confident Nonsense Framing",
-  causal_chimera: "Fake Cause-and-Effect Mix",
-  cross_domain_concept_stitching: "Cross-Domain Concept Stitching",
-  inverted_nonexistent_dependency: "Invented Dependency Reversal",
-  jargon_soup: "Jargon Soup",
-  wrong_relationship: "Wrong Relationship",
-  subtle_premise_violation: "Subtle Premise Violation",
-  plausible_nonexistent_framework: "Plausible Nonexistent Framework",
-  misapplied_mechanism: "Misapplied Mechanism",
-  authoritative_framing: "Authoritative Framing",
-  false_granularity: "False Granularity",
-  wrong_unit_of_analysis: "Wrong Unit of Analysis",
-  temporal_category_error: "Temporal Category Error",
-  reified_metaphor: "Reified Metaphor",
-  cross_domain_stitching: "Cross-Domain Stitching",
-  specificity_trap: "Specificity Trap",
-  fabricated_authority: "Fabricated Authority",
-  sunk_cost_framing: "Sunk Cost Framing",
-  confident_extrapolation: "Confident Extrapolation",
-  nested_nonsense: "Nested Nonsense",
+  authoritative_framing_of_nothing: "Enquadramento de Absurdo Confiante",
+  causal_chimera: "Mistura Falsa de Causa e Efeito",
+  cross_domain_concept_stitching: "Costura de Conceitos Entre Domínios",
+  inverted_nonexistent_dependency: "Inversão de Dependência Inventada",
+  jargon_soup: "Sopa de Jargão",
+  wrong_relationship: "Relação Errada",
+  subtle_premise_violation: "Violação Sutil de Premissa",
+  plausible_nonexistent_framework: "Framework Plausível Inexistente",
+  misapplied_mechanism: "Mecanismo Mal Aplicado",
+  authoritative_framing: "Enquadramento Autoritativo",
+  false_granularity: "Falsa Granularidade",
+  wrong_unit_of_analysis: "Unidade de Análise Errada",
+  temporal_category_error: "Erro de Categoria Temporal",
+  reified_metaphor: "Metáfora Reificada",
+  cross_domain_stitching: "Costura Entre Domínios",
+  specificity_trap: "Armadilha de Especificidade",
+  fabricated_authority: "Autoridade Fabricada",
+  sunk_cost_framing: "Enquadramento de Custo Afundado",
+  confident_extrapolation: "Extrapolação Confiante",
+  nested_nonsense: "Absurdo Aninhado",
 };
 // ====== STATE ======
 const S = {
@@ -1311,7 +1311,7 @@ function rawModelName(r) {
 }
 function prettyModel(r) {
   const raw=rawModelName(r).replace(/_/g,"-"), tok=raw.split("-").filter(Boolean);
-  if(!tok.length) return "Model";
+  if(!tok.length) return "Modelo";
   const rawNorm = raw.trim().toLowerCase();
   const rl=normReasoning(r?.model_reasoning_level);
   const suf=rl&&rl!=="none"?` (${rl.charAt(0).toUpperCase()+rl.slice(1)})`:"";
@@ -1775,7 +1775,7 @@ function fillSelect(sel, values, labelFn) {
 }
 function uniqSorted(arr) { return [...new Set(arr.filter(v=>v!=null&&String(v).length>0))].map(String).sort(); }
 function domainFilterLabel(domainGroup) {
-  return domainGroup === "all" ? "Overall" : (DOMAIN_GROUP_LABELS[domainGroup] || domainGroup);
+  return domainGroup === "all" ? "Geral" : (DOMAIN_GROUP_LABELS[domainGroup] || domainGroup);
 }
 function refreshFilters() {
   const cfg = currentBenchmarkConfig();
@@ -1787,11 +1787,11 @@ function refreshFilters() {
     const prevDomain = domainSel.value || "all";
     const presentDomains = DOMAIN_FILTER_ORDER.filter(d => S.rows.some(r => r.domain_group === d));
     domainSel.innerHTML =
-      `<option value="all">Overall</option>` +
+      `<option value="all">Geral</option>` +
       presentDomains.map(d => `<option value="${esc(d)}">${esc(domainFilterLabel(d))}</option>`).join("");
     domainSel.value = (prevDomain === "all" || presentDomains.includes(prevDomain)) ? prevDomain : "all";
   } else {
-    domainSel.innerHTML = `<option value="all">Overall</option>`;
+    domainSel.innerHTML = `<option value="all">Geral</option>`;
     domainSel.value = "all";
   }
   fillSelect(document.getElementById("filterDifficulty"), uniqSorted(S.rows.map(r=>r.difficulty).filter(Boolean)), v=>DIFFICULTY_LABELS[v]||v);
@@ -1850,7 +1850,7 @@ function renderDomainBar() {
   };
 
   wrap.innerHTML = [
-    btn("all", "Overall"),
+    btn("all", "Geral"),
     ...DOMAIN_FILTER_ORDER
       .filter(d => counts[d] > 0 || selected === d)
       .map(d => btn(d, domainFilterLabel(d))),
@@ -1910,7 +1910,7 @@ function refreshTopVariantToggle() {
   const btn = document.getElementById("topVariantsToggleBtn");
   if (!btn) return;
   const on = !!S.topVariantsOnly;
-  btn.textContent = on ? "Top per series" : "All variants";
+  btn.textContent = on ? "Melhores por série" : "Todas as variantes";
   btn.classList.toggle("active", on);
   btn.setAttribute("aria-pressed", on ? "true" : "false");
 }
@@ -2082,7 +2082,7 @@ function renderDomainHeatmap(filtered) {
   document.getElementById("domainHeatmap").innerHTML = `
     <thead><tr>
       <th class="model-col-header">Model</th>
-      <th>Overall</th>
+      <th>Geral</th>
       ${domains.map(d=>`<th>${esc(DOMAIN_GROUP_LABELS[d]||d)}</th>`).join("")}
     </tr></thead>
     <tbody>${modelData.map(m=>`<tr>
@@ -2111,7 +2111,7 @@ function renderDomainInsights() {
   const rows = [
     {
       key: "all",
-      label: "Overall",
+      label: "Geral",
       summary: summarize(scopeRows),
       active: selectedDomain === "all",
       isOverall: true,
@@ -2276,7 +2276,7 @@ function renderTechniqueChart(filtered) {
         <div style="font-size:0.82rem;color:#22312c;text-align:right;">${esc(e.label)}</div>
         <div class="diff-bar"><span style="width:${e.greenRate.toFixed(1)}%;background:${barColor};"></span></div>
         <div class="diff-bar-val">${fmtPct(e.greenRate)}</div>
-        <div class="tech-expand-hint"><span class="tech-expand-chevron">▸</span><span class="tech-expand-text">Show examples</span></div>
+        <div class="tech-expand-hint"><span class="tech-expand-chevron">▸</span><span class="tech-expand-text">Mostrar exemplos</span></div>
       </div>
       <div class="tech-examples" id="techEx_${esc(e.tech)}" aria-hidden="true">
         <p style="font-size:0.78rem;color:#506660;margin:0 0 6px;">Example questions from <strong>${esc(e.label)}</strong>:</p>
@@ -2289,7 +2289,7 @@ function renderTechniqueChart(filtered) {
 function setTechniqueRowExpanded(bar, open) {
   bar.setAttribute("aria-expanded", open ? "true" : "false");
   const txt = bar.querySelector(".tech-expand-text");
-  if (txt) txt.textContent = open ? "Hide examples" : "Show examples";
+  if (txt) txt.textContent = open ? "Ocultar exemplos" : "Mostrar exemplos";
 }
 function toggleTechniqueExamples(bar) {
   const tech = bar.getAttribute("data-tech");
@@ -2595,7 +2595,7 @@ function renderCompactScatterLegend(containerId, points, opts = {}) {
   )).join("");
   const moreHtml = hiddenCount ? `<span class="chart-legend-more">+${hiddenCount} more orgs</span>` : "";
   const toggleHtml = (expandable && orgEntries.length > maxOrgs)
-    ? `<button type="button" class="chart-legend-toggle" data-legend-toggle="${esc(containerId)}" data-next="${expanded ? "collapse" : "expand"}">${expanded ? "Show fewer" : "Show all orgs"}</button>`
+    ? `<button type="button" class="chart-legend-toggle" data-legend-toggle="${esc(containerId)}" data-next="${expanded ? "collapse" : "expand"}">${expanded ? "Mostrar menos" : "Mostrar todas as orgs"}</button>`
     : "";
   el.innerHTML = `${orgHtml}${moreHtml}${toggleHtml}`;
 }
@@ -2687,8 +2687,8 @@ function renderAllModelsScatter(filtered) {
   }).join("");
 
   svg.innerHTML = `${gridY}${gridX}${trendHtml}${dots}${labelHalo}${labelsHtml}
-    <text x="${ml+pw/2}" y="${H-8}" text-anchor="middle" fill="#425851" font-size="12">Release Date</text>
-    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Green Rate (%)</text>`;
+    <text x="${ml+pw/2}" y="${H-8}" text-anchor="middle" fill="#425851" font-size="12">Data de Lançamento</text>
+    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Taxa Verde (%)</text>`;
 
   setupScatterTooltips(svg, points, "_cx", "_cy", p => {
     const dateStr = p.launchDate.toISOString().slice(0,10);
@@ -2892,15 +2892,15 @@ function renderLaunchAllOrgs(filtered) {
   }).join("");
 
   svg.innerHTML = `${gridY}${gridX}${lines}${dots}${labelsHtml}${orgEndLabels}
-    <text x="${ml+pw/2}" y="${H-10}" text-anchor="middle" fill="#425851" font-size="12">Release Date</text>
-    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Green Rate (%)</text>`;
+    <text x="${ml+pw/2}" y="${H-10}" text-anchor="middle" fill="#425851" font-size="12">Data de Lançamento</text>
+    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Taxa Verde (%)</text>`;
 
   setupScatterTooltips(svg, points, "_cx", "_cy", p => {
     const dateStr = p.launchDate.toISOString().slice(0,10);
     return `<strong>${esc(p.label)}</strong><br>Green: ${p.greenRate.toFixed(1)}%<br>Launch: ${dateStr}`;
   });
 
-  if (metaEl) metaEl.textContent = `${points.length} models shown from ${[...byOrg3.keys()].sort().map(o=>orgName(o)).join(", ")}.`;
+  if (metaEl) metaEl.textContent = `${points.length} modelos exibidos de ${[...byOrg3.keys()].sort().map(o=>orgName(o)).join(", ")}.`;
 }
 
 // ====== RENDER: Reasoning Tokens vs Green Rate Scatter ======
@@ -2911,20 +2911,20 @@ function renderReasoningScatter(filtered) {
   const mode = S.reasoningScatterMode === "cost" ? "cost" : "tokens";
   const modeCfg = mode === "cost"
     ? {
-        headingSuffix: "Does Higher Cost Help?",
-        subtitle: "Average cost per response vs. green rate. Higher cost can reflect more compute and longer reasoning.",
+        headingSuffix: "Custo Mais Alto Ajuda?",
+        subtitle: "Custo médio por resposta vs. taxa verde. Custo mais alto pode refletir mais computação e raciocínio mais longo.",
         metricKey: "avgCost",
-        xAxisLabel: "Average Cost per Response (USD)",
-        tooltipLabel: "Avg Cost",
-        emptyText: "No cost data available for the current filters.",
+        xAxisLabel: "Custo Médio por Resposta (USD)",
+        tooltipLabel: "Custo Médio",
+        emptyText: "Sem dados de custo disponíveis para os filtros atuais.",
       }
     : {
-        headingSuffix: "Does Thinking Harder Help?",
-        subtitle: 'Average reasoning tokens used vs. green rate. More reasoning tokens = model "thinking harder".',
+        headingSuffix: "Pensar Mais Ajuda?",
+        subtitle: 'Média de tokens de raciocínio usados vs. taxa verde. Mais tokens de raciocínio = modelo "pensando mais".',
         metricKey: "avgReasoning",
-        xAxisLabel: "Average Reasoning Tokens per Response",
-        tooltipLabel: "Avg Reasoning Tokens",
-        emptyText: "No reasoning token data available for the current filters.",
+        xAxisLabel: "Média de Tokens de Raciocínio por Resposta",
+        tooltipLabel: "Tokens de Raciocínio Médios",
+        emptyText: "Sem dados de tokens de raciocínio disponíveis para os filtros atuais.",
       };
   const metricKey = modeCfg.metricKey;
   const fmtUsd = v => {
@@ -3018,7 +3018,7 @@ function renderReasoningScatter(filtered) {
 
   svg.innerHTML = `${gridLines}${xGridLines}${trendHtml}${circles}${labelHalo}${labelsHtml}
     <text x="${ml+pw/2}" y="${H-8}" text-anchor="middle" fill="#425851" font-size="12">${esc(modeCfg.xAxisLabel)}</text>
-    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Green Rate (%)</text>`;
+    <text x="14" y="${mt+ph/2}" transform="rotate(-90,14,${mt+ph/2})" text-anchor="middle" fill="#425851" font-size="12">Taxa Verde (%)</text>`;
 
   setupScatterTooltips(svg, points, metricKey, "greenRate", p => {
     const xValue = mode === "cost" ? fmtUsd(p.avgCost) : fmtNum(Math.round(p.avgReasoning));
@@ -3366,7 +3366,7 @@ function bindEvents() {
   const syncFilterToggle = () => {
     if (!filterToggleBtn || !filterDetails) return;
     const isOpen = !!filterDetails.open;
-    filterToggleBtn.textContent = isOpen ? "Hide Filters" : "Show Filters";
+    filterToggleBtn.textContent = isOpen ? "Ocultar Filtros" : "Mostrar Filtros";
     filterToggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   };
   if (filterToggleBtn && filterDetails) {
