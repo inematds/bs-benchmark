@@ -153,7 +153,7 @@ Use o dropdown `Versão do Benchmark` no painel de filtros para alternar entre o
 ## Histórico de Estrelas
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&theme=dark&cachebust=20261110" />
-  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20261110" />
-  <img alt="Gráfico de Histórico de Estrelas" src="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20261110" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&theme=dark&cachebust=20261111" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20261111" />
+  <img alt="Gráfico de Histórico de Estrelas" src="https://api.star-history.com/svg?repos=inematds/bs-benchmark&type=Date&cachebust=20261111" />
 </picture>
